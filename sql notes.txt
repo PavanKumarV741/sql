@@ -1,0 +1,3467 @@
+1. ORACLE DATABASE SOFTWARE RELEASED BY ORACLE
+2. IBM DB2 UDB = UNIVERSAL DATABASE SOFTWARE RELEASED BY IBM
+3. MSSQL SERVER (MICROSOFT SQL SERVER) RELEASED BY MICROSOFT
+4. MYSQL DATABASE SOFTWARE RELEASED FROM ORACLE USED FOR    SMALLER CLIENTS
+5. POSTGRAYSQL SOFTWARE RELEASED BY POSTGRAY COMPANY ESPECIALLY FOR THE LINUX COMMUNITY
+
+==>ORACLE-->ORACLE SERVER-->ONE DATABASE IS CREATED THAT IS ORACLE XE
+
+==>ORACLE SERVER RUNNING IN THE OS IS OCCUPYING 1521 PORT NUMBER
+
+==>ORACLE SERVER CONTAINS 'N' NUMBER OF DATABASES
+
+==>LOCALHOST REPRESENTS CURRENT SYSTEM
+
+==>SQL SOFTWARE IS A CLIENT TO CONNECT THE XE DATABASE WHICH IS RUNNING IN THE SERVER
+
+==>CLIENT CONTAINS AUTHENTICATION
+
+==>DATABASE SOFTWARE UNDERSTAND ONLY SQL LANGUAGE WHICH IS USED FOR TALKING THE DATABASE SOFTWARE
+
+==>SQL DEVELOPER AS A CLIENT TO SEND THE REQUEST TO THE SERVER
+
+==>COMPOSING THE SQL COMMAND ,TRIGGERING THE COMMAND
+
+==>CREATE ,INSERT ,NUMBER,VARCHAR2,INTO,VALUES ARE ALL KEYWORDS
+
+==>SQL IS  A CASE IN-SENSITIVE
+
+==>IDENTIFIERS LIKE (COLUMN_NAME,TABLE_NAME) ARE ALSO CASE IN-SENSITIVE
+      EX: PERSON, person  ARE SAME
+
+==>VALUES/LITERALS  ARE CASE-SENSITIVE
+        EX: MOHAN, mohan ARE NOT SAME
+
+==>sql is a language,mysql is a software
+
+TABLE OF PRODUCT
+---------------------------------
+
+CREATE TABLE PRODUCT(P_ID NUMBER,P_NAME VARCHAR2(50),P_PRICE NUMBER);
+
+INSERT INTO PRODUCT VALUES(1,'LAPTOP',60000);
+INSERT INTO PRODUCT VALUES(2,'PHONE',15000);
+INSERT INTO PRODUCT VALUES(3,'TV',45000);
+INSERT INTO PRODUCT VALUES(4,'BOTTLE',100);
+INSERT INTO PRODUCT VALUES(5,'EAR PHONES',500);
+INSERT INTO PRODUCT VALUES(6,'BAG',1000);
+
+//INSERT INTO PRODUCT VALUES(1,'BOOK') ===> NOT VALID
+
+INSERT INTO PRODUCT(P_ID,P_NAME) VALUES(7,'MOBILE');
+INSERT INTO PRODUCT(P_ID,P_PRICE) VALUES(8,20000);
+INSERT INTO PRODUCT(P_NAME,P_PRICE) VALUES('COMPUTER',2000);
+INSERT INTO PRODUCT(P_NAME) VALUES('PEN');
+INSERT INTO PRODUCT(P_ID) VALUES(1);
+INSERT INTO PRODUCT(P_PRICE) VALUES(90000);
+
+INSERT INTO PRODUCT VALUES('CAR',500000,34); ===>INVALID(BECAUSE ORDER MISSING)
+
+INSERT INTO PRODUCT(P_NAME,P_PRICE,P_ID) VALUES('CAR',500000,34); ==>VALID
+
+INSERT INTO PRODUCT VALUES(1450,'CHAIR',45);==> VALID BUT THE ID IS MORE THEN THE PRICE OF PRODUCT.
+
+UPDATE - COMMAND :
+------------------
+CREATE TABLE MOBILE(ID NUMBER,BRAND_NAME VARCHAR2(50),PRICE NUMBER);
+
+INSERT INTO MOBILE VALUES(1,'SAMSUNG',45000);
+
+UPDATE MOBILE SET BRAND_NAME = 'NEW SAMSUNG' WHERE ID = 1;
+UPDATE MOBILE SET PRICE = 50000 WHERE ID=1;
+UPDATE MOBILE SET BRAND_NAME = 'IPHONE' WHERE BRAND_NAME = 'NEW SAMSUNG';
+
+UPDATE MOBILE SET BRAND_NAME='REALME',PRICE = 15000 WHERE ID = 1;
+UPDATE MOBILE SET ID=3,BRAND_NAME = 'NEW IPHONE' WHERE PRICE = 20000;
+
+-->   WHERE===> MEANS CLAUSE
+
+SUBJECT TABLE:
+--------------
+CREATE TABLE SUBJECT(S_ID NUMBER,
+                     NAME VARCHAR2(50),
+                     INSTRUCTOR VARCHAR2(90),
+                     HOURS_COUNT NUMBER,
+                     TOPICS_COUNT NUMBER);
+
+INSERT INTO SUBJECT VALUES(1,'MATHS','JYOSHNA',100,25);
+INSERT INTO SUBJECT VALUES(2,'COMPUTERS','RAMANA',80,18);
+INSERT INTO SUBJECT VALUES(3,'HTML','MURALI',30,6);
+INSERT INTO SUBJECT VALUES(4,'APTITUDE','SAI',100,26);
+
+
+
+ASSIGNMENT:
+-----------
+
+1.MODIFY COMPUTER SUBJECT'S HOURS COUNT AS '90'.
+
+ANS:  UPDATE SUBJECT SET HOURS_COUNT=90 WHERE NAME='COMPUTERS';
+
+2.MODIFY HTML SUBJECT'S HOURS_COUNT AS '45' AND INSTRUCTOR AS 'CHHABI.'
+
+ANS:  UPDATE SUBJECT SET HOURS_COUNT=45,INSTRUCTOR='CHHABI' WHERE NAME='HTML';
+
+3.MODIFY APTITUDE SUBJECT'S ID AS '5' AND TOPICS_COUNT AS '25' AND ALSO INSTRUCTOR AS 'SWATHI'.
+
+ANS:   UPDATE SUBJECT SET S_ID=5,TOPICS_COUNT=25,INSTRUCTOR='SWATHI' WHERE NAME='APTITUDE';
+
+4.MODIFY MATHS INSTRUCTOR AS 'KIRAN' AND TOPICS COUNT AS '24' AND ALSO ID AS '33'.
+
+ANS:   UPDATE SUBJECT SET INSTRUCTOR='SAI KIRAN',TOPICS_COUNT=24,S_ID=33 WHERE NAME='MATHS';
+
+EMPLOYEE1 TABLE:
+------------------------------
+CREATE TABLE EMPLOYEE1(SNO NUMBER,
+                       NAME VARCHAR2(90),
+                       AGE NUMBER,
+                       SALARY NUMBER,
+                       DEPT VARCHAR2(50));
+
+INSERT INTO EMPLOYEE1 VALUES(1,'ABC',22,45000,'SW');
+INSERT INTO EMPLOYEE1 VALUES(2,'XYZ',42,43000,'SW');
+INSERT INTO EMPLOYEE1 VALUES(3,'TEST',32,44000,'HW');
+INSERT INTO EMPLOYEE1 VALUES(4,'HELLO',23,65000,'HW');
+INSERT INTO EMPLOYEE1 VALUES(5,'RAMU',26,42000,'SW');
+INSERT INTO EMPLOYEE1 VALUES(6,'SWETHA',62,15000,'SALES');
+INSERT INTO EMPLOYEE1 VALUES(7,'SWATHI',26,25000,'SW');
+INSERT INTO EMPLOYEE1 VALUES(8,'VENKAT',29,35000,'SALES');
+
+UPDATE EMPLOYEE1 SET AGE=45 WHERE SNO<5;
+UPDATE EMPLOYEE1 SET SALARY=85000 WHERE DEPT='SW';
+UPDATE EMPLOYEE1 SET SALARY=95000 WHERE AGE>=40;
+
+RANGE :(BETWEEN)
+--------------
+UPDATE EMPLOYEE1 SET AGE=22 WHERE SALARY BETWEEN 20000 AND 60000;
+
+UPDATE EMPLOYEE1 SET AGE=42;
+
+NOTE: IF 'WHERE' IS NOT INCLUDED THEN ALL THE RECORDS WILL BE MODIFIED.
+
+INSERT INTO DEPT1 VALUES(1,'SOFTWARE',22,500000);
+INSERT INTO DEPT1 VALUES(2,'HARDWARE',15,200000);
+INSERT INTO DEPT1 VALUES(3,'SALES',2,5000);
+INSERT INTO DEPT1 VALUES(4,'MARKETING',4,100000);
+
+ASSIGNMENT:
+----------------------
+1. IN THE FIRST QUARTER 3 EMPLOYEES ARE TAKEN IN TO SOFTWARE DEPT WITH EACH SALARY IS 45000.
+command:
+
+-->UPDATE DEPT1 SET EMPLOYEES_COUNT=EMPLOYEES_COUNT+3,TOTAL_SALARY=3*45000+5000000 WHERE NAME='SOFTWARE';
+
+2.IN THE 2ND QUARTER 4 EMPLOYEES TAKEN INTO SALES DEPT WITH EACH SALARY AS 22000.
+command:
+
+-->UPDATE DEPT1 SET EMPLOYEES_COUNT=EMPLOYEES_COUNT+4,TOTAL_SALARY=TOTAL_SALARY+4*22000 WHERE NAME='SALES';
+
+3. IN THE 3RD QUARTER 2 EMPLOYEES TAKEN INTO SALES DEPT WITH EACH SALARY AS 25000 AND 5 EMPLOYEES INTO MARKETING TEAM WITH EACH SALARY AS 18000.
+
+-->UPDATE DEPT1 SET EMPLOYEES_COUNT = EMPLOYEES_COUNT + 2,TOTAL_SALARY = TOTAL_SALARY + (2500*2) WHERE NAME='SALES';
+
+UPDATE DEPT1 SET EMPLOYEES_COUNT = EMPLOYEES_COUNT + 5,TOTAL_SALARY = TOTAL_SALARY + 18000*5 WHERE NAME='MARKETING';
+
+4. IN THE 4TH QUARTER 10 EMPLOYEES TAKEN INTO SECURITY TEAM WITH EACH SALARY AS 15000.
+
+-->INSERT INTO DEPT1 VALUES(5,'SECURITY',10,(15000*10));
+
+EMP1 TABLE : 
+--------------------
+CREATE TABLE EMP1(ID NUMBER,NAME VARCHAR2(90),AGE NUMBER,SALARY NUMBER);
+
+INSERT INTO EMP1 VALUES(1,'MOHAN',22,50000);
+INSERT INTO EMP1 VALUES(2,'MURALI',21,60000);
+INSERT INTO EMP1 VALUES(3,'RAGHU',24,70000);
+INSERT INTO EMP1 VALUES(4,'ANU',25,40000);
+INSERT INTO EMP1 VALUES(5,'SWETHA',20,30000);
+INSERT INTO EMP1 VALUES(6,'SWATHI',25,65000);
+
+QUESTIONS :
+---------------------
+1. In Jan month Murali got salary hike as 15%
+Ans: UPDATE EMP1 SET SALARY=SALARY*15/100+SALARY WHERE NAME='MURALI';
+
+2.In feb month all employees got salary hike as 5%
+Ans:UPDATE EMP1 SET SALARY=SALARY+SALARY*5/100;
+
+3.In march month employees whose salary is less than 60000 were got salary hike as 2%
+Ans:UPDATE EMP1 SET SALARY=SALARY+SALARY*25/100 WHERE SALARY<60000;
+
+4.In april month employees whose salary is greater than 70000 were got salary hike as 2%
+Ans:UPDATE EMP1 SET SALARY=SALARY+SALARY*2/100 WHERE SALARY>70000;
+
+5.Due to loss in the business, In may month all employees salary is reduced 15%
+Ans:UPDATE EMP1 SET SALARY=SALARY-SALARY*15/100;
+
+--> 'IN/in' means particular.
+
+ 
+6.On june emp1 id's 1,4,5 were got the salary hike of 20%
+Ans: UPDATE EMP1 SET SALARY=SALARY+SALARY*20/100 WHERE ID IN (1,4,5);
+
+7.On july except emp id 3 all other were got the salary hike of 2%.
+ Ans: UPDATE EMP1 SET SALARY=SALARY+SALARY*2/100 WHERE ID NOT IN (3);
+
+8.On aug except emp id 2,6 all other were got the salary hike of 5%
+Ans:UPDATE EMP1 SET SALARY=SALARY+SALARY*5/100 WHERE ID  NOT IN (2,6);
+
+Student1 table :
+-----------------------
+
+CREATE TABLE STUDENT1(SNO NUMBER,NAME VARCHAR2(90),AGE NUMBER);
+
+INSERT INTO STUDENT1 VALUES(1,'MOHAN',22);
+INSERT INTO STUDENT1 VALUES(2,'MURALI',24);
+INSERT INTO STUDENT1 VALUES(3,'RAMU',32);
+INSERT INTO STUDENT1 VALUES(4,'SWETHA',27);
+
+Question 1 : Delete the 2nd row 
+DELETE FROM STUDENT1 WHERE SNO = 2;
+
+Emp2 table : 
+-------------------
+CREATE TABLE EMP2(SNO NUMBER,NAME VARCHAR2(90),AGE NUMBER,SALARY NUMBER,DEPT VARCHAR2(90));
+
+
+INSERT INTO EMP2 VALUES(1,'RAMU',22,45000,'SW');
+INSERT INTO EMP2 VALUES(2,'RAMANA',21,35000,'HW');
+INSERT INTO EMP2 VALUES(3,'RAGHU',23,43000,'SW');
+INSERT INTO EMP2 VALUES(4,'MURALI',26,45300,'SW');
+INSERT INTO EMP2 VALUES(5,'KUMAR',32,45030,'HW');
+INSERT INTO EMP2 VALUES(6,'SWETHA',24,45003,'SW');
+INSERT INTO EMP2 VALUES(7,'SUNITHA',42,45004,'SALES');
+INSERT INTO EMP2 VALUES(8,'PAVAN',25,45040,'SW');
+INSERT INTO EMP2 VALUES(9,'ARUN',27,45400,'SALES');
+INSERT INTO EMP2 VALUES(10,'TIGER',62,44000,'SALES');
+
+Questions:
+----------------
+1. Delete the employee from sales dept
+Ans: DELETE FROM EMP2 WHERE DEPT = SALES;
+
+2. Delete the employees whose age in between 25 to 35.
+Ans: DELETE FROM EMP2 WHERE AGE BETWEEN 25 AND 35;
+
+3.Delete the employees whose name containing R anywhere
+Ans: DELETE FROM EMP2 WHERE NAME LIKE '%R%';
+
+4.Delete the employees whose ID not 6,3,5 
+Ans: DELETE FROM EMP2 WHERE SNO NOT IN(6,3,5);
+
+5. Delete all the employees
+Ans: DELETE FROM EMP2;
+
+--> Delete command is deleting the row/records from table not table structure.
+
+-->  should delete the table structure we need use the command is     
+     == >  DROP TABLE TABLE_NAME ;
+
+SELECT command : 
+-----------------------------
+-->  '*' represents all the columns
+--> By using select command we can display a column records
+
+commands are:
+Ex:
+-----
+SELECT * FROM EMPLOYEE;
+SELECT EMP_NAME FROM EMPLOYEE;
+SELECT EMP_NAME FROM EMPLOYEE WHERE EMP_AGE = 57;
+SELECT EMP_ID FROM EMPLOYEE;
+SELECT EMP_AGE FROM EMPLOYEE;
+SELECT EMP_SALARY FROM EMPLOYEE;
+SELECT EMP_DEPT FROM EMPLOYEE;
+SELECT EMP_ADDRESS FROM EMPLOYEE;
+
+--> We can display more than one column by using ' , ' as seperator.
+
+SELECT EMP_ID,EMP_NAME FROM EMPLOYEE;
+SELECT EMP_ID,EMP_NAME,EMP_AGE,EMP_SALARY FROM EMPLOYEE;
+SELECT EMP_DEPT,EMP_SALARY,EMP_ID,EMP_NAME FROM EMPLOYEE;
+SELECT EMP_NAME , EMP_SALARY FROM EMPLOYEE WHERE EMP_ADDRESS = 'JP NAGER';
+SELECT * FROM EMPLOYEE WHERE EMP_NAME LIKE '%A%';
+
+OR ==> any one condition is true .
+AND ==> two condition should be true
+
+SELECT * FROM EMPLOYEE WHERE EMP_AGE > 30 OR EMP_SALARY < 50000 ;
+SELECT * FROM EMPLOYEE WHERE EMP_AGE > 30 AND EMP_SALARY < 50000 ;
+
+==> 'in' means particular values in which we give the condition that will be displayed
+  Ex: select * from employee where emp_age in (21,57);
+  Here the age 21,57 records only be displayed..
+
+==> 'between' range of values can be displayed
+  Ex: SELECT * FROM EMPLOYEE WHERE emp_age BETWEEN 21 AND 57;
+
+Note :  To change label name of the column name in display/output.
+----------       
+command: 1. SELECT EMP_NAME AS FIRST_NAME FROM EMPLOYEE;
+
+         2. SELECT EMP_NAME FIRST_NAME FROM EMPLOYEE;
+---> Here the column name EMP_NAME can be changed the label display as  FIRST_NAME.
+
+==> 'AS' (alias name) is optional 
+==>If two or more columns name should be display different names then we should specify by using ' , ' as a seperator
+
+Ex: SELECT EMP_NAME AS EMPLOYEE_FIRST_NAME , EMP_AGE AS EMPLOYEE_AGE FROM EMPLOYEE;
+
+==> We can use double qoutes (" ") if more than one word 
+
+    Ex: SELECT EMP_NAME "YOUR GOOD NAME" FROM EMPLOYEE;
+
+Ex-2: SELECT EMP_ADDRESS AS JUST_ADDRESS,EMP_AGE,EMP_AGE AS YOUR_AGE FROM EMPLOYEE;
+
+--> For table name can also be deplay by changing
+command : 1. SELECT * FROM EMPLOYEE EMP;
+
+          2. SELECT * FROM EMPLOYEE E WHERE E.EMP_AGE > 40 OR E.EMP_ADDRESS = 'BTM';
+
+Built-in function in sql:
+----------------------------------
+1.MAX() :  Ex: 1. SELECT MAX(EMP_AGE) FROM EMPLOYEE;
+-------- 
+                --> Here the max value in age of employee table 
+
+               2. SELECT MAX(AVG_SALARY) FROM EMPLOYEE;
+                   --> Here it displays max salary
+
+               3. SELECT MAX(EMP_NAME) FROM EMPLOYEE;
+                   --> Here it will sort according to the alphabetic order by one by one letter ASCII code.
+
+2.MIN() : Ex : 1. SELECT MIN(EMP_AGE) FROM EMPLOYEE;
+----------        
+               2. SELECT MIN(EMP_NAME) FROM EMPLOYEE;
+
+3. AVG() : only for numeric columns
+    -----------
+    Ex : 1. SELECT AVG(EMP_AGE) FROM EMPLOYEE;
+
+          2. SELECT AVG(EMP_SALARY) FROM EMPLOYEE;
+
+==> If we want to insert two columns instead of 5 column
+ Command : INSERT INTO EMPLOYEE(EMP_ID,EMP_NAME) VALUES(11,'MANU');
+
+4.COUNT() : Is used to count the number of rows
+   -----------------
+     1. SELECT COUNT(*) FROM EMPLOYEE;
+
+     2. SELECT COUNT(EMP_NAME) FROM EMPLOYEE;
+
+     3. SELECT COUNT(EMP_SALARY) FROM EMPLOYEE;
+
+5.SUM() : Is used for only numeric columns / total sum value
+   ------------
+     1. SELECT SUM(EMP_AGE) FROM EMPLOYEE;
+
+     2. SELECT SUM(EMP_SALARY) FROM EMPLOYEE;
+
+     3. SELECT SUM(EMP_AGE)/COUNT(EMP_AGE) FROM EMPLOYEE;
+
+     4. SELECT SUM(EMP_SALARY)/COUNT(EMP_SALARY) FROM EMPLOYEE;
+
+     5. SELECT SUM(EMP_AGE)/COUNT(EMP_AGE) AS AGE_AVG FROM EMPLOYEE;
+
+     6. SELECT SUM(EMP_SALARY)/COUNT(EMP_SALARY) AS SALARY_AVG FROM EMPLOYEE;
+
+2nd largest salary command is : (MAX)
+------------------------------------------------
+
+-->    1. SELECT MAX(EMP_SALARY) FROM EMPLOYEE WHERE EMP_SALARY < (SELECT MAX(EMP_SALARY) FROM EMPLOYEE);
+       
+       2. SELECT MAX(EMP_SALARY) AS SECOND_MAX FROM EMPLOYEE WHERE EMP_SALARY < (85000);
+
+       3. SELECT MAX(EMP_SALARY) "2ND MAX" FROM EMPLOYEE WHERE EMP_SALARY < (85000);
+
+2nd smallest salary command is : (MIN)
+--------------------------------------------------
+
+-->    1.  SELECT MIN(EMP_SALARY) FROM EMPLOYEE WHERE EMP_SALARY > (SELECT MIN(EMP_SALARY) FROM EMPLOYEE);
+   
+       2. SELECT MIN(EMP_SALARY) SECOND_MIN FROM EMPLOYEE WHERE EMP_SALARY > (30000);
+ 
+       3. SELECT MIN(EMP_SALARY) "2ND MIN" FROM EMPLOYEE WHERE EMP_SALARY > (30000);
+
+Questions :
+-----------------
+1.FIND OUT NAME OF THE EMPLOYEE WHOSE SALARY IS MAXIMUM
+
+ans:  SELECT EMP_NAME FROM EMPLOYEE WHERE EMP_SALARY = (SELECT MAX(EMP_SALARY) FROM EMPLOYEE);
+
+2.FIND OUT NAME OF THE EMPLOYEE WHOSE SALARY IS MINIMUM
+
+ans: SELECT EMP_NAME FROM EMPLOYEE WHERE EMP_SALARY = (SELECT MIN(EMP_SALARY) FROM EMPLOYEE);
+
+3.FIND OUT NAME OF THE EMPLOYEE WHOSE SALARY IS 2ND MAXIMUM
+
+ans: SELECT EMP_NAME FROM EMPLOYEE WHERE (EMP_SALARY) = (SELECT MAX(EMP_SALARY) AS SECOND_MAX FROM EMPLOYEE WHERE EMP_SALARY < (SELECT MAX(EMP_SALARY) FROM EMPLOYEE));
+
+4.FIND OUT NAME OF THE EMPLOYEE WHOSE SALARY IS 2ND MINIMUM
+
+ans:  SELECT EMP_NAME FROM EMPLOYEE WHERE (EMP_SALARY) = (SELECT MIN(EMP_SALARY) AS SECOND_MAX FROM EMPLOYEE WHERE EMP_SALARY > (SELECT MIN(EMP_SALARY) FROM EMPLOYEE));
+
+5.FIND OUT 3RD  MAXIMUM SALARY
+
+ans: SELECT MAX(EMP_SALARY) FROM EMPLOYEE WHERE EMP_SALARY < (SELECT MAX(EMP_SALARY) FROM EMPLOYEE WHERE EMP_SALARY < (SELECT MAX(EMP_SALARY) FROM EMPLOYEE)); 
+ 
+6.FIND OUT 3RD MINIMUM SALARY
+
+ans: SELECT MIN(EMP_SALARY) FROM EMPLOYEE WHERE EMP_SALARY > (SELECT MIN(EMP_SALARY) FROM EMPLOYEE WHERE EMP_SALARY > (SELECT MIN(EMP_SALARY) FROM EMPLOYEE));
+
+7.FIND OUT NAME OF THE EMPLOYEE WHOSE SALARY IS 3RD MAXIMUM
+
+ans: SELECT EMP_NAME FROM EMPLOYEE WHERE EMP_SALARY = (SELECT MAX(EMP_SALARY) FROM EMPLOYEE WHERE EMP_SALARY < (SELECT MAX(EMP_SALARY) FROM EMPLOYEE WHERE EMP_SALARY < (SELECT MAX(EMP_SALARY) FROM EMPLOYEE)));
+
+8.FIND OUT NAME OF THE EMPLOYEE WHOSE SALARY IS 3RD MINIMUM
+
+ans: SELECT EMP_NAME FROM EMPLOYEE WHERE EMP_SALARY = (SELECT MIN(EMP_SALARY) FROM EMPLOYEE WHERE EMP_SALARY > (SELECT MIN(EMP_SALARY) FROM EMPLOYEE WHERE EMP_SALARY > (SELECT MIN(EMP_SALARY) FROM EMPLOYEE)));
+
+Note: what we write inside a '( )' is known as inner query/sub query , first inner query will execute later outer query.
+
+
+Order by: is used for sorting in ascending order(ASC) by default and  in  descending order(DESC)
+------------------------------------------------------------------------------------------------
+
+9. READ ALL EMPLOYEES WITH SORT BASED  ON SALARY
+
+ans : SELECT * FROM EMPLOYEE ORDER BY EMP_SALARY;
+
+10.READ ALL EMPLOYEES WITH SORT BASED ON AGE
+
+ans:  SELECT * FROM EMPLOYEE ORDER BY EMP_AGE;
+
+11. READ ALL EMPLOYEES WITH SORT BASED ON ADDRESS  
+ 
+ans:  SELECT * FROM EMPLOYEE ORDER BY EMP_ADDRESS;
+
+12. READ ALL EMPLOYEES WITH SORT BASED ON NAME
+ 
+ans:  SELECT * FROM EMPLOYEE ORDER BY EMP_NAME;
+
+Examples: In ascending and descending order
+
+   1. SELECT * FROM EMPLOYEE ORDER BY EMP_ID DESC;
+
+   2. SELECT * FROM EMPLOYEE ORDER BY EMP_AGE ASC;
+
+NOTE : RANK() , OVER() is only oracle specific
+-----------
+--->   rank() always should be over() and over() is specifying the column (Condition)
+
+--> 1.  SELECT EMP_NAME,EMP_SALARY,RANK() OVER(ORDER BY EMP_SALARY DESC) FROM EMPLOYEE;
+     
+     2. SELECT EMP_NAME,EMP_SALARY,RANK() OVER(ORDER BY emp_age DESC) FROM EMPLOYEE;
+
+     3. SELECT EMP_NAME,EMP_SALARY,EMP_AGE ,RANK() OVER(ORDER BY EMP_SALARY ASC) FROM EMPLOYEE;
+ 
+     4. SELECT EMP_NAME,EMP_AGE, RANK() OVER(ORDER BY EMP_NAME ASC )  RANKING FROM EMPLOYEE;
+
+     5. SELECT EMP_NAME,EMP_AGE, RANK() OVER(ORDER BY EMP_NAME ASC ) AS RANKING FROM EMPLOYEE;
+
+Note : DELETE FROM EMPLOYEE WHERE EMP_SALARY IS NULL;
+
+==> Comparing purpose use 'is' instead of '='.
+
+Inner command for 2nd,3rd,4th max/min are : 
+-------------------------------------------
+
+--> SELECT EMP_NAME, RANK() OVER(ORDER BY EMP_SALARY DESC) RANK FROM EMPLOYEE WHERE RANK = 2;   //ERROR
+
+-> Because rank is not a column name
+
+==> SELECT * FROM(SELECT * FROM EMPLOYEE WHERE EMP_AGE > 30) WHERE EMP_AGE < 48;
+    SELECT * FROM (SELECT * FROM EMPLOYEE);
+--> Inner command is a data of a table / temperary table 
+--> outer command is a result of a inner command
+
+==> Note : In inner temperary table contains a rank column so by accessing the outer command uses the rank as a where condition to identify the 2nd ,3rd, 4th etc rows.
+
+For 2nd max value:
+------------------
+SELECT * FROM (SELECT EMP_NAME,EMP_SALARY, RANK() OVER(ORDER BY EMP_SALARY DESC) RANK FROM EMPLOYEE) WHERE RANK = 2;
+
+For 3rd max value:
+------------------
+SELECT * FROM (SELECT EMP_NAME,EMP_SALARY, RANK() OVER(ORDER BY EMP_SALARY DESC) RANK FROM EMPLOYEE) WHERE RANK = 3;
+
+For 4th max value:
+------------------
+SELECT * FROM (SELECT EMP_NAME,EMP_SALARY, RANK() OVER(ORDER BY EMP_SALARY DESC) RANK FROM EMPLOYEE) WHERE RANK = 4; 
+
+ ............... etc.
+
+For 2nd min value:
+------------------
+SELECT * FROM (SELECT EMP_NAME,EMP_SALARY, RANK() OVER(ORDER BY EMP_SALARY ASC) RANK FROM EMPLOYEE) WHERE RANK = 2;
+
+For 3rd min value:
+------------------
+SELECT * FROM (SELECT EMP_NAME,EMP_SALARY, RANK() OVER(ORDER BY EMP_SALARY ASC) RANK FROM EMPLOYEE) WHERE RANK = 3;
+
+For 4th min value:
+------------------
+SELECT * FROM (SELECT EMP_NAME,EMP_SALARY, RANK() OVER(ORDER BY EMP_SALARY ASC) RANK FROM EMPLOYEE) WHERE RANK = 4; 
+ 
+ ............... etc
+
+Group by : is used to group the specific column
+-----------
+-->group by is used to find the max salary can be display based on the department.
+
+   -> 1. SELECT EMP_DEPT,MAX(EMP_SALARY) FROM EMPLOYEE GROUP BY EMP_DEPT;
+
+   -> Here in table contains two different department then the max salary of those two department will be displayed.
+ 
+   -> 2. SELECT EMP_DEPT,MIN(EMP_SALARY) FROM EMPLOYEE GROUP BY EMP_DEPT;
+
+   -> Here the min salary of two different department will be displayed.
+ 
+   -> 3. SELECT EMP_ADDRESS,MAX(EMP_SALARY) FROM EMPLOYEE GROUP BY emp_address ;
+
+   -> 4. SELECT EMP_ADDRESS,MAX(EMP_SALARY) FROM EMPLOYEE GROUP BY emp_name; // error
+
+   -> Because the employee name are individual not the unique name and if in department contains unique name for 5 employee as SW and 5 employee as HW so we can easily group by department so that we can get the max salary in each department.
+
+    -> 5. SELECT EMP_address,MAX(EMP_SALARY),min(emp_age) FROM EMPLOYEE GROUP BY emp_address;
+ 
+    -> Here we can display the max salary and min age according to the addresses.
+
+    -> 6. SELECT EMP_DEPT,COUNT(*) FROM EMPLOYEE GROUP BY EMP_DEPT ;
+
+    -> Displays count of each department 
+
+    -> 7. SELECT EMP_ADDRESS,COUNT(*) COUNT FROM EMPLOYEE GROUP BY EMP_ADDRESS;
+
+    -> Displays count of each address
+
+
+Student table:
+--------------
+CREATE TABLE STUDENT(ID NUMBER,
+                     NAME VARCHAR2(90),
+                     AGE NUMBER);
+
+
+INSERT INTO STUDENT VALUES(1,'KUMAR',22);
+INSERT INTO STUDENT VALUES(2,'MANU',27);
+INSERT INTO STUDENT VALUES(3,'MOHAN',25);
+INSERT INTO STUDENT VALUES(4,'MURALI',28);
+INSERT INTO STUDENT VALUES(5,'RAMU',29);
+INSERT INTO STUDENT VALUES(6,'RAVALI',25);
+INSERT INTO STUDENT VALUES(7,'SWATHI',26);
+INSERT INTO STUDENT VALUES(8,'RUPA',24);
+INSERT INTO STUDENT VALUES(9,'BABU',20);
+INSERT INTO STUDENT VALUES(10,'RAMANA',21);
+INSERT INTO STUDENT VALUES(11,'KUMA',22);
+INSERT INTO STUDENT VALUES(12,'MANUJ',27);
+INSERT INTO STUDENT VALUES(13,'MOHANA',25);
+INSERT INTO STUDENT VALUES(14,'MURAL',28);
+INSERT INTO STUDENT VALUES(15,'RAMA',29);
+INSERT INTO STUDENT VALUES(16,'RAVAL',25);
+INSERT INTO STUDENT VALUES(17,'SWATH',26);
+INSERT INTO STUDENT VALUES(18,'RUPU',24);
+INSERT INTO STUDENT VALUES(19,'BABA',20);
+INSERT INTO STUDENT VALUES(20,'RAMAN',21);
+
+SELECT * FROM STUDENT; ==> To display the all rows and columns.
+
+Pagination: spliting the results into multiple pages   
+-----------
+Ex: email
+
+--> how to read first 10 records or second 10 records etc so by using the pagination we can read.
+
+ROWNUM : rownum is a keyword in oracle specific.
+--------
+--> even though it is not a column name in student table but it display in a column in the output. by using rownum we can achieve pagination
+
+1. SELECT ID,NAME,AGE,ROWNUM FROM STUDENT;
+
+2. SELECT ID,NAME,AGE,ROWNUM FROM STUDENT WHERE ROWNUM <=5 ;
+   -> Here the first 5 row data will be displayed.
+
+3. SELECT * FROM(SELECT ID, NAME, AGE, ROWNUM RN FROM STUDENT) WHERE RN>5 AND RN<=10;
+   ->Here it displays from 6th row to 10 th row
+
+4. SELECT * FROM(SELECT ID, NAME, AGE, ROWNUM RN FROM STUDENT) WHERE RN>10 AND RN<=15;
+   ->Here it displays from 10th row to 15th row
+
+
+Country table:
+--------------
+CREATE TABLE COUNTRY(ID NUMBER,
+                    NAME VARCHAR2(90),
+                    CAPITAL VARCHAR2(90));
+
+
+INSERT INTO COUNTRY VALUES(1,'INDIA','NEW DELHI');
+INSERT INTO COUNTRY VALUES(2,'UGENDA','KAMPALA');
+INSERT INTO COUNTRY VALUES(3,'AMERICA','WASHINGTON DC');
+INSERT INTO COUNTRY VALUES(4,'UK','LONDON');
+INSERT INTO COUNTRY VALUES(5,'JAPAN','TOKYO');
+
+INSERT INTO COUNTRY VALUES(1,'INDIA','NEW DELHI');
+INSERT INTO COUNTRY VALUES(2,'UGENDA','KAMPALA');
+INSERT INTO COUNTRY VALUES(3,'AMERICA','WASHINGTON DC');
+INSERT INTO COUNTRY VALUES(4,'UK','LONDON');
+INSERT INTO COUNTRY VALUES(5,'JAPAN','TOKYO');
+
+INSERT INTO COUNTRY VALUES(1,'INDIA','NEW DELHI');
+INSERT INTO COUNTRY VALUES(2,'UGENDA','KAMPALA');
+INSERT INTO COUNTRY VALUES(3,'AMERICA','WASHINGTON DC');
+INSERT INTO COUNTRY VALUES(4,'UK','LONDON');
+INSERT INTO COUNTRY VALUES(5,'JAPAN','TOKYO');
+
+INSERT INTO COUNTRY VALUES(1,'INDIA','NEW DELHI');
+INSERT INTO COUNTRY VALUES(2,'UGENDA','KAMPALA');
+INSERT INTO COUNTRY VALUES(3,'AMERICA','WASHINGTON DC');
+INSERT INTO COUNTRY VALUES(4,'UK','LONDON');
+INSERT INTO COUNTRY VALUES(5,'JAPAN','TOKYO');
+
+To read the unique records from the table by using distinct keyword by considering specific columns.
+--> SELECT DISTINCT ID,NAME,CAPITAL FROM COUNTRY;
+--> SELECT DISTINCT * FROM COUNTRY;
+Another approach: SELECT ID, NAME, CAPITAL FROM COUNTRY GROUP BY ID,NAME,CAPITAL;
+
+--> by using distinct and group by just displaying unique records but still the table contains the duplicate records.
+
+--> here contains 5 groups, in each group contains 4 records like
+
+1   India   New India
+1   India   New India       ==> 1 group with 4 records
+1   India   New India
+1   India   New India
+
+2   uganda  kampala
+2   uganda  kampala         ==> 1 group with 4 records
+2   uganda  kampala
+2   uganda  kampala
+
+3   America  Washington DC
+3   America  Washington DC  ==> 1 group with 4 records
+3   America  Washington DC
+3   America  Washington DC
+
+4   Uk       London
+4   Uk       London         ==> 1 group with 4 records
+4   Uk       London
+4   Uk       London
+
+5   Japan    Tokyo
+5   Japan    Tokyo          ==> 1 group with 4 records
+5   Japan    Tokyo
+5   Japan    Tokyo
+
+--> Here obtains 5 groups and for each 4 records
+
+
+removing the duplicates from the table:
+---------------------------------------
+ROWID : INTERNAL COLUMN TO EVERY TABLE AND IT IS UNIQUE VALUE
+
+--> across the database for each row has unique ROWID. oracle manager will create a rowid for every table as unique value for each row either in same table or different table.
+
+ID     NAME            CAPITAL         ROWID
+--     ----            -------         -----
+1      India          New India        ABO1
+1      India          New India        ABO2
+1      India          New India        ABO3
+1      India          New India        ABO4
+
+2      uganda          kampala         ABO5
+2      uganda          kampala         ABO6
+2      uganda          kampala         ABO7
+2      uganda          kampala         ABO8
+
+MAX(ROWID):
+-----------
+
+SELECT MAX(ROWID) FROM COUNTRY GROUP BY ID, NAME, CAPITAL;
+--> Here we get the max ROWID value based on group by of id,name,capital
+ 
+like ex: ABO4 , ABO8 , AB12 , AB16 , AB20 are max ROWID's
+
+DELETE FROM COUNTRY WHERE ROWID NOT IN(SELECT MAX(ROWID) FROM COUNTRY GROUP BY ID,NAME,CAPITAL); 
+         (OR)
+DELETE FROM COUNTRY WHERE ROWID NOT IN(ABO4 , ABO8 , AB12 , AB16 , AB20);
+--> Here remaining the rowid value are deleting accept max ROWID's
+
+MIN(ROWID):
+-----------
+
+SELECT MIN(ROWID) FROM COUNTRY GROUP BY ID, NAME, CAPITAL;
+--> Here we get the MIN ROWID value based on group by of id,name,capital
+ 
+like ex: ABO1 , ABO5 , AB09, AB13 , AB17are MIN ROWID's
+
+DELETE FROM COUNTRY WHERE ROWID NOT IN(SELECT MIN(ROWID) FROM COUNTRY GROUP BY ID,NAME,CAPITAL); 
+         (OR)
+DELETE FROM COUNTRY WHERE ROWID NOT IN(ABO1 , ABO5 , AB09,AB13 , AB17);
+--> Here remaining the rowid value are deleting accept MIN ROWID's
+
+
+-> By default column is allowing duplicates if while inserting the we didnot specify any value then the default value will be placed.
+
+-> For any type the default value will be 'null'
+
+Tab1 table : 
+-----------
+CREATE TABLE TAB1(ID NUMBER,NAME VARCHAR(90),AGE NUMBER);
+
+INSERT INTO TAB1 VALUES(1,'RAMU',22);
+INSERT INTO TAB1 VALUES(2,'MOHAN',24);
+INSERT INTO TAB1 (NAME,AGE) VALUES('SWATHI',24);
+INSERT INTO TAB1 (ID, AGE) VALUES(4,24);
+INSERT INTO TAB1 (ID, NAME) VALUES(5,'MURALI');
+INSERT INTO TAB1 (NAME) VALUES('RADHA');
+INSERT INTO TAB1 (AGE) VALUES(44);
+INSERT INTO TAB1 (ID) VALUES(6);
+
+
+SELECT * FROM TAB1;
+
+To avoid a null value in a records
+----------------------------------
+NOT NULL:
+---------
+
+tab2 table:
+-----------
+
+CREATE TABLE TAB2(ID NUMBER, NAME VARCHAR2(90) NOT NULL,AGE NUMBER);
+
+INSERT INTO TAB2 VALUES(1,'RAMU',22);  
+INSERT INTO TAB2 VALUES(2,'MOHAN',24);
+INSERT INTO TAB2 (NAME,AGE) VALUES('SWATHI',24);
+INSERT INTO TAB2 (ID, AGE) VALUES(4,24);  // error
+INSERT INTO TAB2 (ID, NAME) VALUES(5,'MURALI');
+INSERT INTO TAB2 (NAME) VALUES('RADHA');
+INSERT INTO TAB2 (AGE) VALUES(44);  // error
+INSERT INTO TAB2 (ID) VALUES(6);   //error
+
+-->  error because name declared as a NOT NULL so compulsory name should contains any value.
+
+TAB3 table:
+-----------
+CREATE TABLE TAB3(ID NUMBER, NAME VARCHAR2(90) NOT NULL,AGE NUMBER NOT NULL);
+
+INSERT INTO TAB3 VALUES(1,'RAMU',22);
+INSERT INTO TAB3 VALUES(2,'MOHAN',24);
+INSERT INTO TAB3 (NAME,AGE) VALUES('SWATHI',24);
+INSERT INTO TAB3 (ID, AGE) VALUES(4,24); // error
+INSERT INTO TAB3 (ID, NAME) VALUES(5,'MURALI'); // error
+INSERT INTO TAB3 (NAME) VALUES('RADHA'); // error
+INSERT INTO TAB3 (AGE) VALUES(44); // error
+INSERT INTO TAB3 (ID) VALUES(6);  //error
+SELECT * FROM TAB3;
+
+--> any number of columns can be declared as NOTNULL.
+
+
+To avoid the duplicate value while inserting
+--------------------------------------------
+UNIQUE KEY:
+-----------
+
+--> By giving the UNIQUE after data type
+   
+  -> CREATE TABLE TAB5(ID NUMBER,NAME VARCHAR2(90)UNIQUE,AGE NUMBER);
+
+INSERT INTO TAB5 VALUES(1,'MADHU',22); 
+INSERT INTO TAB5 VALUES(1,'MADHU',22); // ERROR
+INSERT INTO TAB5 VALUES(1,'RAMU',22);
+INSERT INTO TAB5 VALUES(1,'RAMU',22);  // ERROR
+INSERT INTO TAB5 VALUES(1,'MADHU1',22);
+INSERT INTO TAB5 VALUES(1,'MADHU1',22);// ERROR
+INSERT INTO TAB5 VALUES(1,'RUPA',22);
+SELECT * FROM TAB5;
+
+--> error because the name has given the UNIQUE so if any duplicate is inserting it will not allows to insert .
+
+-> In a same table any number of columns to be UNIQUE.
+
+
+CREATE TABLE TAB6(ID NUMBER,NAME VARCHAR2(90)UNIQUE,AGE NUMBER UNIQUE);
+
+INSERT INTO TAB6 VALUES(1,'MADHU',22);
+INSERT INTO TAB6 VALUES(1,'MADHU',23);// ERROR
+INSERT INTO TAB6 VALUES(1,'RAMU',22); // ERROR
+INSERT INTO TAB6 VALUES(1,'RAM',22);  // ERROR
+INSERT INTO TAB6 VALUES(1,'MADHU1',23);
+INSERT INTO TAB6 VALUES(1,'MADHU1',22);// ERROR
+INSERT INTO TAB6 VALUES(1,'RUPA',22); // ERROR
+SELECT * FROM TAB6;
+
+-> Here error is because the name and the age should be unique in every record.
+
+-> Under Unique column any number of null values can be inserted.
+
+CREATE TABLE TAB8(ID NUMBER,NAME VARCHAR2(90)UNIQUE,AGE NUMBER);
+
+INSERT INTO TAB8 VALUES(1,'ABC',22);
+INSERT INTO TAB8 VALUES(1,'ABC',22);  // ERROR
+INSERT INTO TAB8(ID,AGE) VALUES(1,22);
+INSERT INTO TAB8(ID,AGE) VALUES(1,22);
+INSERT INTO TAB8(ID,AGE) VALUES(1,22);
+INSERT INTO TAB8(ID,AGE) VALUES(1,22);
+INSERT INTO TAB8(ID,AGE) VALUES(1,22);
+
+--> In 3 rd insert onwards the name value is null but it doesn't show an any error because more number of null value can be accessed in UNIQUE.
+
+-> Two null are not duplicates
+
+->Unique comes under constraint and it can written in another column but is not a column.
+
+CREATE TABLE TAB9(ID NUMBER,
+                  NAME VARCHAR2(90),
+                  AGE NUMBER,
+                  CONSTRAINT TAB9_UK1 UNIQUE(AGE));
+
+-> Here indirectly age is declaring as a UNIQUE.
+
+-> By using Unique_name as TAB9_UK1 we can enable or disable or drop uniqueness and can perform additional performance/behaviour.
+
+-> ID,NAME,AGE are column
+
+-> Constraint name should be unique for all the tables.
+
+-> Constraint has a name TAB9_UK1 has a type is UNIQUE and the column is AGE.
+
+-> DESC TAB9;   ==> Description about the table.
+   
+   Name  Null?    Type         
+   ----  ----- ------------ 
+    ID           NUMBER       
+   NAME        VARCHAR2(90) 
+    AGE           NUMBER  
+
+CREATE TABLE TAB9(ID NUMBER,
+                  NAME VARCHAR2(90),
+                  AGE NUMBER,
+                  CONSTRAINT TAB9_UK1 UNIQUE(AGE));
+
+INSERT INTO TAB9 VALUES(1,'MOHAN',22);
+INSERT INTO TAB9 VALUES(1,'MOHANA',22); //ERROR
+
+-> error because age should be unique.
+
+CREATE TABLE TAB10(ID NUMBER,
+                  NAME VARCHAR2(90),
+                  AGE NUMBER,
+                  CONSTRAINT TAB10_UK1 UNIQUE(NAME));
+
+INSERT INTO TAB10 VALUES(1,'MOHAN',22);
+INSERT INTO TAB10 VALUES(1,'MOHAN',23); // ERROR
+
+-> error because the name should be unique
+
+CREATE TABLE TAB11(ID NUMBER,
+                  NAME VARCHAR2(90),
+                  AGE NUMBER,
+                  CONSTRAINT TAB11_UK3 UNIQUE(NAME),
+                  CONSTRAINT TAB11_UK2 UNIQUE(AGE));
+
+INSERT INTO TAB11 VALUES(1,'RAMU',22);
+INSERT INTO TAB11 VALUES(1,'RAMU',23); // ERROR
+INSERT INTO TAB11 VALUES(1,'RAM',23);  // ERROR
+
+
+Composite Unique key :
+-----------------------
+-> Two or more unique columns can be declared in a single constraint , that means the combination of name and age together is unique if both are unique in two rows then it shows an error.
+
+-> both name and age is consider as a composite unique key.
+
+CREATE TABLE TAB12(ID NUMBER,
+                  NAME VARCHAR2(90),
+                  AGE NUMBER,
+                  CONSTRAINT TAB12_UK3 UNIQUE(NAME,AGE));
+
+INSERT INTO TAB12 VALUES(1,'MOHAN',22);
+INSERT INTO TAB12 VALUES(1,'MANA',23);
+INSERT INTO TAB12 VALUES(1,'MANA',23); // ERROR
+INSERT INTO TAB12 VALUES(1,'JYO',22);
+SELECT * FROM TAB12;
+
+-> Here in 2nd and 3rd row the name and age both are same so it gives an error.
+
+-> In 1st and 4th row the age is same but name is different so it allows and executed.
+
+OUTPUT:
+-------
+
+ID      NAME    AGE
+--      ----    ---
+1	MOHAN	22
+1	MANA	23
+1	JYO	22
+
+
+Person table:
+-------------
+CREATE TABLE PERSON(ID NUMBER,
+                    NAME VARCHAR2(90),
+                    AGE NUMBER,
+                    EMAIL VARCHAR2(90),
+                    CONSTRAINT PERSON_UK1 UNIQUE(ID,AGE,EMAIL));
+
+INSERT INTO PERSON VALUES(1,'MOHAN',22,'mohan@gmail');
+INSERT INTO PERSON VALUES(1,'MOHAN',22,'mohan1@gmail');
+INSERT INTO PERSON VALUES(1,'RAM',23,'ram@gamil');
+INSERT INTO PERSON VALUES(1,'MOHAN',23,'mohan@gmail');
+INSERT INTO PERSON VALUES(1,'RAM',23,'ram@gamil');  // error
+SELECT * FROM PERSON;      
+
+--> Here error occurs because the 3rd and 5th row the values of id,age,email are all same.
+
+OUTPUT:
+-------
+
+ID      NAME    AGE      EMAIL
+--      ----    ---      -----
+1	MOHAN	22	mohan@gmail
+1	MOHAN	22	mohan1@gmail
+1	RAM	23	ram@gamil
+1	MOHAN	23	mohan@gmail
+
+
+
+PRIMARY KEY :
+-------------
+-> Primary key is a combination of UNIQUE/duplicates and NOT NULL 
+
+CREATE TABLE PERSON(ID NUMBER,
+                    NAME VARCHAR2(90),
+                    AGE NUMBER,
+                    EMAIL VARCHAR2(90) PRIMARY KEY);
+-> In data should not contains the email as unique and null.
+
+INSERT INTO PERSON VALUES(1,'MOHAN',22,'mohan@gmail.com');
+INSERT INTO PERSON VALUES(2,'RAMU',22,'ramu@gmail.com');
+INSERT INTO PERSON VALUES(1,'MOHAN',22,'mohana@gmail.com');
+INSERT INTO PERSON VALUES(1,'MOHAN',23,'mohan@gmail.com'); // ERROR
+INSERT INTO PERSON(ID, NAME, AGE) VALUES(2,'RAMU',24);  //ERROR
+SELECT * FROM PERSON;
+
+OUTPUT :
+--------
+ID      NAME    AGE         EMAIL
+--      ----    ---         -----
+1	MOHAN	22	mohan@gmail.com
+2	RAMU	22	ramu@gmail.com
+1	MOHAN	22	mohana@gmail.com
+
+-> In one table we cannot declare more than one primary key
+
+CREATE TABLE PERSON(ID NUMBER,
+                    NAME VARCHAR2(90)PRIMARY KEY,
+                    AGE NUMBER,
+                    EMAIL VARCHAR2(90) PRIMARY KEY);  // error
+--> Because here name and email contains primary key but it is not supporting
+
+By using Constraint name:
+-------------------------
+
+CREATE TABLE PERSON(ID NUMBER,
+                    NAME VARCHAR2(90),
+                    AGE NUMBER,
+                    EMAIL VARCHAR2(90),
+                    CONSTRAINT PERSON_PK PRIMARY KEY(EMAIL)); 
+
+Composite Primary key:
+----------------------
+Ex : 1 . CREATE TABLE PERSON(ID NUMBER,
+                    NAME VARCHAR2(90),
+                    AGE NUMBER,
+                    EMAIL VARCHAR2(90),
+                    CONSTRAINT PERSON_PK PRIMARY KEY(EMAIL,ID));
+-> Here both id and email together as one primary key , if a table contains both id and email is same then error occurs so we should change any one data.
+
+Ex : 2 . CREATE TABLE PERSON(ID NUMBER,
+                    NAME VARCHAR2(90),
+                    AGE NUMBER,
+                    EMAIL VARCHAR2(90),
+                    ADDRESS VARCHAR2(90),
+                    SALARY NUMBER,
+                    CONSTRAINT PERSON_PK PRIMARY KEY(EMAIL,AGE,SALARY));
+->Here the three age, email and salary together should not be same and NOTNULL. 
+
+INSERT INTO PERSON VALUES(1,'RAMU',22,'ramu@gmail.com','btm',20000);
+INSERT INTO PERSON VALUES(1,'RAMU',23,'ramu@gmail.com','btm',20000);
+INSERT INTO PERSON VALUES(1,'RAMU',22,'rama@gmail.com','btm',20000);
+INSERT INTO PERSON VALUES(1,'RAMU',22,'ramu@gmail.com','btm',22000);
+INSERT INTO PERSON VALUES(1,'RAMU',22,'ramu@gmail.com','btm',20000);  // ERROR
+-> Here in last insert command all three like age, email, salary together are same compare to remaining rows so it shows an error
+
+SELECT * FROM PERSON;
+
+OUTPUT:
+-------
+ID      NAME    AGE         EMAIL        ADDRESS     SALARY
+--      ----    ---         -----        -------     ------
+1	RAMU	22	ramu@gmail.com	   btm	     20000
+1	RAMU	23	ramu@gmail.com	   btm	     20000
+1	RAMU	22	rama@gmail.com	   btm 	     20000
+1	RAMU	22	ramu@gmail.com	   btm	     22000
+
+Differences between UNIQUE and PRIMARY KEY
+-------------------------------------------
+  UNIQUE                                                               PRIMARY
+
+1.UNIQUE is only checking only the duplicate data              1. PRIMARY KEY is checking both duplicate and NOTNULL values
+2.We can give UNIQUE key for more than one column              2. PRIMARY KEY does not give more than one column
+3.UNIQUE KEY accepting the NULL values                         3. PRIMARY KEY does not accepts the NULL values
+4.We can give one or more columns as a UNIQUE by using a       4. PRIMARY KEY does allows more than one column by using the 
+  single Constraint name                                          Constraints name that will called as composite Primary key
+----------------------------------------------------------------------------------------------------------------------------
+1. With respect to null values
+2. With respect to number of keys ( Unique key can have more than one)&(Primary has only one key).
+
+
+FOREIGN KEY: maps the rows of different tables
+------------
+-> Instead of giving data in single table we can give the data in another table and built the relation between the two table through foreign key then we can access the data from individual tables.
+
+STUDENT TABLE:
+--------------
+CREATE TABLE STUDENT(ID NUMBER,NAME VARCHAR2(90),AGE NUMBER);
+
+INSERT INTO STUDENT VALUES(1,'RAMU',22);
+INSERT INTO STUDENT VALUES(2,'KUMAR',24);
+INSERT INTO STUDENT VALUES(3,'MOHAN',26);
+INSERT INTO STUDENT VALUES(4,'SWATHI',27);
+
+SELECT * FROM STUDENT;
+
+OUTPUT:
+-------
+ID      NAME    AGE
+--      ----    ---
+1	RAMU	22
+2	KUMAR	24
+3	MOHAN	26
+4	SWATHI	27
+
+
+ADDRESS TABLE:
+--------------
+CREATE TABLE ADDRESS(HOUSE_NO VARCHAR(90),
+                     STREET_NAME VARCHAR2(90),
+                     CITY VARCHAR2(90),
+                     STATE VARCHAR2(90));
+
+INSERT INTO ADDRESS VALUES('124/M','BTM','BANGALORE','KARNATAKA');
+INSERT INTO ADDRESS VALUES('125/M','BTM','BANGALORE','KARNATAKA');
+INSERT INTO ADDRESS VALUES('126/M','BTM','BANGALORE','KARNATAKA');
+INSERT INTO ADDRESS VALUES('127/M','BTM','BANGALORE','KARNATAKA');
+
+SELECT * FROM ADDRESS;
+
+OUTPUT:
+-------
+HOUSE_NO   STREET_NAME      CITY          STATE
+--------   -----------     -------       --------
+124/M	     BTM	  BANGALORE	 KARNATAKA
+125/M	     BTM	  BANGALORE	 KARNATAKA
+126/M	     BTM	  BANGALORE	 KARNATAKA
+127/M	     BTM	  BANGALORE	 KARNATAKA
+
+Mapping between student table , address table and Marks table
+-------------------------------------------------------------
+
+STUDENT TABLE:
+--------------
+CREATE TABLE STUDENT(ID NUMBER UNIQUE,NAME VARCHAR2(90),AGE NUMBER);
+
+INSERT INTO STUDENT VALUES(1,'RAMU',22);
+INSERT INTO STUDENT VALUES(2,'KUMAR',24);
+INSERT INTO STUDENT VALUES(3,'MOHAN',26);
+INSERT INTO STUDENT VALUES(4,'SWATHI',27);
+
+SELECT * FROM STUDENT;
+
+OUTPUT:
+-------
+ID      NAME    AGE
+--      ----    ---
+1	RAMU	22
+2	KUMAR	24
+3	MOHAN	26
+4	SWATHI	27
+
+ADDRESS TABLE:
+--------------
+CREATE TABLE ADDRESS(HOUSE_NO VARCHAR(90),
+                     STREET_NAME VARCHAR2(90),
+                     CITY VARCHAR2(90),
+                     STATE VARCHAR2(90),
+                     STUDENT_ID NUMBER,
+                     CONSTRAINT ADDRESS_FK1 FOREIGN KEY(STUDENT_ID) REFERENCES STUDENT(ID));
+
+INSERT INTO ADDRESS VALUES('123/M','BTM','BANGALORE','KARNATAKA', 1);
+INSERT INTO ADDRESS VALUES('124/M','BTM','BANGALORE','KARNATAKA', 2);
+INSERT INTO ADDRESS VALUES('125/M','BTM','BANGALORE','KARNATAKA', 3);
+INSERT INTO ADDRESS VALUES('126/M','BTM','BANGALORE','KARNATAKA', 4);
+
+SELECT * FROM ADDRESS;
+
+OUTPUT:
+-------
+HOUSE_NO   STREET_NAME      CITY          STATE      STUDENT_ID
+--------   -----------     -------       --------    -----------
+124/M	     BTM	  BANGALORE	 KARNATAKA        1
+125/M	     BTM	  BANGALORE	 KARNATAKA        2 
+126/M	     BTM	  BANGALORE	 KARNATAKA        3 
+127/M	     BTM	  BANGALORE	 KARNATAKA        4
+
+-> Student table is parent table / base table, address table is child table / dependent table.
+-> STUDENT_ID is a foreign key column reference to student table 'id'.
+-> foreign key can be specify only through Constraints.
+-> In student table id is given as unique/primary by reference that we can comparing through foreign key in address table.
+
+MARKS TABLE:
+------------
+CREATE TABLE MARKS(MATHS_MARKS NUMBER,
+                   ENGLISH_MARKS NUMBER,
+                   SCIENCE_MARKS NUMBER,
+                   SOCIAL_MARKS NUMBER,
+                   STUDENT_ID NUMBER,
+                   CONSTRAINT MARKS_FK1 
+                   FOREIGN KEY(STUDENT_ID) REFERENCES STUDENT(ID));
+                   
+INSERT INTO MARKS VALUES(100,62,66,87,1);
+INSERT INTO MARKS VALUES(99,72,56,67,2);
+INSERT INTO MARKS VALUES(98,82,67,85,3);
+INSERT INTO MARKS VALUES(97,42,86,84,4);
+
+SELECT * FROM MARKS;
+
+OUTPUT:
+-------
+MATHS_MARKS  ENGLISH_MARKS  SCIENCE_MARKS  SOCIAL_MARKS  STUDENT_ID
+-----------  -------------  -------------  ------------  ----------
+100	          62	        66	       87	     1
+99	          72     	56             67	     2
+98	          82	        67	       85	     3
+97	          42	        86	       84	     4
+ 
+Conditions for mapping:
+-----------------------
+1. reference column should be either unique or primary in parent table then only the foreign key can be used to perform
+Ex: 
+CREATE TABLE STUDENT(ID NUMBER PRIMARY KEY,NAME VARCHAR2(90));
+
+CREATE TABLE ADDRESS(HOUSE_NO VARCHAR(90),
+                     STREET_NAME VARCHAR2(90),
+                     STUDENT_ID NUMBER,
+                     CONSTRAINT ADDRESS_FK1 FOREIGN KEY(STUDENT_ID) REFERENCES STUDENT(ID));
+
+-> Here in the parent/student table id has a primary key 
+
+2. foreign key should be one of the available value in the reference column in parent table column
+
+CREATE TABLE STUDENT(ID NUMBER PRIMARY KEY,NAME VARCHAR2(90));
+
+CREATE TABLE ADDRESS(HOUSE_NO VARCHAR(90),
+                     STREET_NAME VARCHAR2(90),
+                     STUDENT_ID NUMBER,
+                     CONSTRAINT ADDRESS_FK1 FOREIGN KEY(STUDENT_ID) REFERENCES STUDENT(ID));
+
+INSERT INTO ADDRESS VALUES('123/M','BTM', 1); // error
+
+-> Here the address table values are inserted but in parent/student table doesnot contains any data so it will not accept.
+-> so the reference column values should be similar to the foreign key column
+
+3. parent record can't be deleted if child is associated
+4. parent table can't be dropped if there is a child table.
+
+--> Foreign key allows null values/duplicates by default
+
+Ex: INSERT INTO ADDRESS(HOUSE_NO,STREET_NAME, CITY, STATE) VALUES('126/M','BTM','BANGALORE','KARNATAKA');
+-> Here the STUDENT_ID is not provided but the row will be inserted
+
+SELECT * FROM ADDRESS;
+
+OUTPUT:
+-------
+HOUSE_NO   STREET_NAME      CITY          STATE      STUDENT_ID
+--------   -----------     -------       --------    -----------
+124/M	     BTM	  BANGALORE	 KARNATAKA        1
+125/M	     BTM	  BANGALORE	 KARNATAKA        2 
+126/M	     BTM	  BANGALORE	 KARNATAKA        3 
+127/M	     BTM	  BANGALORE	 KARNATAKA        4
+126/M	     BTM	  BANGALORE	 KARNATAKA      null
+
+-> In student contains id that values only should be present in child tables otherwise error optained when we are inserting.
+
+-> If we give foreign key as UNIQUE/PRIMARY KEY then we can achieve one-to-one mapping so for each student contains only one address
+
+STUDENT TABLE:
+--------------
+CREATE TABLE STUDENT(ID NUMBER PRIMARY KEY,NAME VARCHAR2(90),AGE NUMBER);
+
+INSERT INTO STUDENT VALUES(1,'RAMU',22);
+INSERT INTO STUDENT VALUES(2,'RAM',23);
+INSERT INTO STUDENT VALUES(3,'RUPA',24);
+INSERT INTO STUDENT VALUES(4,'MOHAN',32);
+INSERT INTO STUDENT VALUES(5,'KIRAN',22);
+
+ADDRESS TABLE:
+--------------
+CREATE TABLE ADDRESS(HOUSE_NO VARCHAR2(90),
+                     STREET_NAME VARCHAR2(90),
+                     STUDENT_ID NUMBER UNIQUE,
+                     CONSTRAINT ADDRESS_FK1 
+                     FOREIGN KEY(STUDENT_ID) REFERENCES STUDENT(ID));
+
+INSERT  INTO ADDRESS VALUES('121/M', 'BTM', 1);
+INSERT  INTO ADDRESS VALUES('122/M', 'BTM', 2);
+INSERT  INTO ADDRESS VALUES('123/M', 'BTM', 3);
+INSERT  INTO ADDRESS VALUES('124/M', 'BTM', 4);
+INSERT INTO ADDRESS (HOUSE_NO, STREET_NAME) VALUES('125/M', 'BTM');
+
+-> KIRAN doesnot have a any address
+-> 125/M address does not assign to any student
+
+         Address table                                            Student table
+         -------------                                           ----------------
+HOUSE_NO  STREET_NAME  STUDENT_ID                           ID        NAME        AGE               
+--------  -----------  ----------                           --        ----        ---
+125/M	     BTM	 null                               1	      RAMU	   22
+121/M	     BTM	  1                                 2         RAM          23
+122/M	     BTM	  2                                 3         RUPA         24
+123/M	     BTM	  3                                 4         MOHAN        32
+124/M	     BTM	  4                                 5         KIRAN        22                         
+                                                          
+1. SELECT * FROM ADDRESS WHERE STUDENT_ID = (SELECT ID FROM STUDENT WHERE NAME='RAMU');
+
+OUTPUT:
+-------
+
+HOUSE_NO  STREET_NAME  STUDENT_ID                                        
+--------  -----------  ----------                         
+123/KM	     BTM	  1 
+
+2. SELECT * FROM STUDENT WHERE ID = (SELECT STUDENT_ID FROM ADDRESS WHERE HOUSE_NO = '124/M');
+
+OUTPUT:
+-------
+ID        NAME        AGE  
+--        ----        ---
+4         MOHAN        32
+
+JOINS : (One-to-One) mapping:   // foreign key should specify any unique/primary key
+------------------------------
+
+INNER JOIN:
+-----------
+SELECT * FROM STUDENT , ADDRESS WHERE STUDENT.ID = ADDRESS.STUDENT_ID;
+       (OR)
+SELECT * FROM STUDENT INNER JOIN ADDRESS ON STUDENT.ID = ADDRESS.STUDENT_ID;
+       (OR)
+SELECT * FROM STUDENT S, ADDRESS A WHERE S.ID = A.STUDENT_ID;
+       (OR)
+SELECT * FROM STUDENT S INNER JOIN ADDRESS A ON S.ID = A.STUDENT_ID;
+
+OUTPUT:
+-------
+ID      NAME    AGE    HOUSE_NO   STREET_NAME   STUDENT_ID
+--      ----    ---    --------   -----------   ----------
+1	RAMU	22	123/M	      BTM	    1
+2	RAM	23	124/M	      BTM	    2
+3	RUPA	24	125/M	      BTM	    3
+4	MOHAN	32	126/M	      BTM	    4
+
+
+OUTER JOIN:
+-----------
+LEFT OUTER:
+-----------
+SELECT * FROM STUDENT S LEFT OUTER JOIN ADDRESS A ON S.ID = A.STUDENT_ID;
+
+OUTPUT:
+-------
+ID      NAME    AGE    HOUSE_NO   STREET_NAME   STUDENT_ID
+--      ----    ---    --------   -----------   ----------
+1	RAMU	22	123/M	      BTM	    1
+2	RAM	23	124/M	      BTM	    2
+3	RUPA	24	125/M	      BTM	    3
+4	MOHAN	32	126/M	      BTM	    4
+5	KIRAN	52	(null)       (null)        (null)
+
+
+RIGHT OUTER:
+------------		
+SELECT * FROM STUDENT S RIGHT OUTER JOIN ADDRESS A ON S.ID = A.STUDENT_ID;
+
+OUTPUT:
+-------
+ID      NAME    AGE    HOUSE_NO   STREET_NAME   STUDENT_ID
+--      ----    ---    --------   -----------   ----------
+1	RAMU	22	123/M	      BTM	    1
+2	RAM	23	124/M	      BTM	    2
+3	RUPA	24	125/M	      BTM	    3
+4	MOHAN	32	126/M	      BTM	    4
+(null) 	(null) (null)	127/KM	      BTM	  (null)
+
+
+FULL OUTER:
+------------		
+SELECT * FROM STUDENT S FULL OUTER JOIN ADDRESS A ON S.ID = A.STUDENT_ID;
+
+OUTPUT:
+-------
+ID      NAME    AGE    HOUSE_NO   STREET_NAME   STUDENT_ID
+--      ----    ---    --------   -----------   ----------
+1	RAMU	22	123/M	      BTM	    1
+2	RAM	23	124/M	      BTM	    2
+3	RUPA	24	125/M	      BTM	    3
+4	MOHAN	32	126/M	      BTM	    4
+(null) 	(null) (null)	127/KM	      BTM	  (null)
+5	KIRAN	52	null         (null)       (null)
+
+
+JOINS : (One-to-many) : //foreign key should not be primary key/unique key
+-----------------------
+
+PERSON table:
+-------------
+CREATE TABLE PERSON(ID NUMBER UNIQUE,NAME VARCHAR2(90),AGE NUMBER);
+
+INSERT INTO PERSON VALUES(1,'RAMU',22);
+INSERT INTO PERSON VALUES(2,'MOHAN',23);
+INSERT INTO PERSON VALUES(4,'RUPA',21);
+UPDATE PERSON SET ID = 3 WHERE ID = 4;
+SELECT * FROM PERSON;
+
+OUTPUT:
+-------
+ID      NAME   AGE
+--      -----  ---
+1	RAMU	22
+2	MOHAN	23
+3	RUPA	21
+
+MOBILE_NUMBER TABLE:
+--------------------
+CREATE TABLE MOBILE_NUMBER(M_NO NUMBER,
+                        SERVICE_PROVIDER VARCHAR2(90),
+                        P_ID NUMBER,
+                        CONSTRAINT M_FK 
+                        FOREIGN KEY(P_ID) REFERENCES PERSON(ID));
+
+INSERT INTO MOBILE_NUMBER VALUES(7680035898,'AIRTEL',1);
+INSERT INTO MOBILE_NUMBER VALUES(7380045898,'AIRTEL',1);
+INSERT INTO MOBILE_NUMBER VALUES(9680034898,'JIO',2);
+INSERT INTO MOBILE_NUMBER VALUES(6680035498,'AIRTEL',2);
+INSERT INTO MOBILE_NUMBER VALUES(7180035898,'JIO',2);
+INSERT INTO MOBILE_NUMBER(M_NO,SERVICE_PROVIDER) VALUES(7680235898,'JIO');
+SELECT * FROM MOBILE_NUMBER;
+
+OUTPUT:
+------- 
+  M_NO        SERVICE_PROVIDER   P_ID
+----------    ----------------  -----
+7680035898	  AIRTEL	  1
+7380045898	  AIRTEL	  1
+9680034898	   JIO	          2
+6680035498	  AIRTEL	  2
+7180035898	   JIO	          2
+7680235898	   JIO          null
+
+-> For Ramu contains two mobile numbers based on mobile_number table
+-> For mohan contains three mobile numbers based on mobile_number table
+
+
+RAMU ALL MOBILE NUMBERS ARE:
+------------------------
+SELECT * FROM MOBILE_NUMBER WHERE P_ID = 
+           (SELECT ID FROM PERSON WHERE NAME = 'RAMU'); 
+
+OUTPUT:
+------- 
+  M_NO        SERVICE_PROVIDER   P_ID
+----------    ----------------  -----
+7680035898	  AIRTEL	  1
+7380045898	  AIRTEL	  1
+
+
+To identify whose mobile number is this:
+-----------------------------------------
+SELECT * FROM PERSON WHERE ID = 
+           (SELECT P_ID FROM MOBILE_NUMBER WHERE M_NO = 9680034898);
+
+OUTPUT:
+-------
+ID    NAME     AGE
+--    ----     ---
+ 2    MOHAN     23
+
+INNER JOIN:
+-----------
+
+SELECT * FROM PERSON,MOBILE_NUMBER WHERE PERSON.ID = MOBILE_NUMBER.P_ID;
+SELECT * FROM PERSON P,MOBILE_NUMBER M WHERE P.ID = M.P_ID;
+SELECT * FROM PERSON INNER JOIN MOBILE_NUMBER ON PERSON.ID = MOBILE_NUMBER.P_ID;
+
+OUTPUT:
+-------
+ID      NAME    AGE       M_NO       SERVICE_PROVIDER    P_ID
+--      ----    ---      ---------    ---------------    ----
+1	RAMU	22	7680035898	AIRTEL	          1
+1	RAMU	22	7380045898	AIRTEL	          1
+2	MOHAN	23	9680034898	JIO	          2
+2	MOHAN	23	6680035498	AIRTEL	          2
+2	MOHAN	23	7180035898	JIO	          2
+
+LEFT OUTER JOIN:
+----------------
+SELECT * FROM PERSON LEFT OUTER JOIN MOBILE_NUMBER ON PERSON.ID = MOBILE_NUMBER.P_ID;
+
+OUTPUT:
+-------
+ID      NAME    AGE       M_NO       SERVICE_PROVIDER    P_ID
+--      ----    ---      ---------    ---------------    ----
+1	RAMU	22	7680035898	AIRTEL	          1
+1	RAMU	22	7380045898	AIRTEL         	  1
+2	MOHAN	23	9680034898	JIO	          2
+2	MOHAN	23	6680035498	AIRTEL	          2
+2	MOHAN	23	7180035898	JIO	          2
+3	RUPA	21	  (null)       (null)           (null)
+
+RIGHT OUTER JOIN:
+-----------------
+SELECT * FROM PERSON RIGHT OUTER JOIN MOBILE_NUMBER ON PERSON.ID = MOBILE_NUMBER.P_ID;
+
+OUTPUT:
+-------
+
+ID      NAME    AGE       M_NO       SERVICE_PROVIDER    P_ID
+--      ----    ---      ---------    ---------------    ----
+1	RAMU	22	7380045898	AIRTEL	          1
+1	RAMU	22	7680035898	AIRTEL	          1
+2	MOHAN	23	7180035898	JIO	          2
+2	MOHAN	23	6680035498	AIRTEL	          2
+2	MOHAN	23	9680034898	JIO	          2
+(null) (null)  (null)	7680235898	JIO	         (null)
+
+FULL OUTER JOIN:
+----------------
+SELECT * FROM PERSON FULL OUTER JOIN MOBILE_NUMBER ON PERSON.ID = MOBILE_NUMBER.P_ID;
+
+OUTPUT:
+-------
+ID      NAME    AGE       M_NO       SERVICE_PROVIDER    P_ID
+--      ----    ---      ---------    ---------------    ----
+1	RAMU	22	7680035898	AIRTEL	          1
+1	RAMU	22	7380045898	AIRTEL	          1
+2	MOHAN	23	9680034898	JIO	          2
+2	MOHAN	23	6680035498	AIRTEL	          2
+2	MOHAN	23	7180035898	JIO	          2   
+(null)  (null) (null)	7680235898	JIO	        (null)
+3	RUPA	21	   (null)      (null)           (null)		
+
+--> one-to-one:  one child one parent.
+--> one-to-many: one child belongs to multiple parents/one parent can have multiple childs
+ 
+JOINS: (many-to-many) achieved through after creating the another table called as intermediate table/mapping table
+---------------------
+
+BATCH TABLE:
+------------
+CREATE TABLE BATCH(ID NUMBER UNIQUE,NAME VARCHAR2(90),DURATION VARCHAR2(90));
+
+INSERT INTO BATCH VALUES(1,'JUNE BATCH','6 MONTHS');
+INSERT INTO BATCH VALUES(2,'JULY BATCH','6 MONTHS');
+INSERT INTO BATCH VALUES(3,'AUG BATCH','6 MONTHS');
+INSERT INTO BATCH VALUES(4,'APR BATCH','6 MONTHS');
+
+SELECT * FROM BATCH;
+
+OUTPUT:
+-------
+ID         NAME        DURATION
+--         ----       ----------     
+1	JUNE BATCH	6 MONTHS
+2	JULY BATCH	6 MONTHS
+3	AUG BATCH	6 MONTHS
+4	APR BATCH	6 MONTHS
+
+
+STUDENT TABLE:
+--------------
+CREATE TABLE STUDENT(ID NUMBER UNIQUE,NAME VARCHAR2(90),AGE NUMBER);
+
+INSERT INTO STUDENT VALUES(1,'RAMU',32);
+INSERT INTO STUDENT VALUES(2,'MOHAN',42);
+INSERT INTO STUDENT VALUES(3,'MURALI',32);
+INSERT INTO STUDENT VALUES(4,'RUPA',28);
+INSERT INTO STUDENT VALUES(5,'RAVALI',29);
+INSERT INTO STUDENT VALUES(6,'RAGHU',28);
+INSERT INTO STUDENT VALUES(7,'PAVAN',26);
+INSERT INTO STUDENT VALUES(8,'SWATHI',25);
+INSERT INTO STUDENT VALUES(9,'SWETHA',22);
+INSERT INTO STUDENT VALUES(10,'TEST',21);
+INSERT INTO STUDENT VALUES(11,'KIRAN',23);
+
+SELECT * FROM STUDENT;
+
+OUTPUT:
+-------
+ID      NAME       AGE
+--      -----      ---
+1	RAMU	   32
+2	MOHAN	   42
+3	MURALI	   32
+4	RUPA	   28
+5	RAVALI	   29
+6	RAGHU	   28
+7	PAVAN	   26
+8	SWATHI	   25
+9	SWETHA	   22
+10	TEST	   21
+11	KIRAN	   23
+
+
+BATCH_STUDENT TABLE: (this is the extra table is created because to perform many-to-many mapping
+--------------------
+
+CREATE TABLE BATCH_STUDENT(BATCH_ID NUMBER,STUDENT_ID NUMBER,
+                           CONSTRAINT B_FK1 FOREIGN KEY(BATCH_ID) REFERENCES BATCH(ID),
+                           CONSTRAINT B_FK2 FOREIGN KEY(STUDENT_ID) REFERENCES STUDENT(ID));
+
+INSERT INTO BATCH_STUDENT VALUES(1, 1);
+INSERT INTO BATCH_STUDENT VALUES(1, 2);
+INSERT INTO BATCH_STUDENT VALUES(1, 3);
+INSERT INTO BATCH_STUDENT VALUES(2, 1);
+INSERT INTO BATCH_STUDENT VALUES(2, 4);
+INSERT INTO BATCH_STUDENT VALUES(2, 5);
+INSERT INTO BATCH_STUDENT VALUES(2, 6);
+INSERT INTO BATCH_STUDENT VALUES(3, 7);
+INSERT INTO BATCH_STUDENT VALUES(3, 8);
+INSERT INTO BATCH_STUDENT VALUES(3, 4);
+INSERT INTO BATCH_STUDENT VALUES(3, 6);
+
+SELECT * FROM BATCH_STUDENT;
+
+OUTPUT:
+-------
+BATCH_ID   STUDENT_ID
+--------   -----------
+1	       1
+1	       2
+1	       3
+2	       1
+2	       4
+2	       5
+2	       6
+3	       7
+3	       8
+3	       4
+3	       6
+
+ASSIGNMENT QUESTIONS:
+---------------------
+
+1   FIND OUT THE STUDENT UNDER JULY BATCH?
+    ANS: SELECT * FROM STUDENT WHERE ID IN(SELECT STUDENT_ID FROM BATCH_STUDENT BS,BATCH B WHERE B.ID = BS.BATCH_ID AND B.NAME = 'JULY BATCH');
+         
+      (OR)
+
+   SELECT * FROM STUDENT WHERE ID IN(SELECT STUDENT_ID FROM BATCH_STUDENT WHERE BATCH_ID = (SELECT ID FROM BATCH WHERE NAME = 'JULY BATCH'));
+
+2 FIND OUT ALL THE BATCHES OF RAMU
+  ANS: SELECT * FROM BATCH WHERE ID IN(SELECT BATCH_ID FROM STUDENT S, BATCH_STUDENT BS WHERE S.ID = BS.STUDENT_ID AND S.NAME = 'RAMU');
+ 
+      (OR)
+
+    SELECT * FROM BATCH WHERE ID IN(SELECT BATCH_ID FROM BATCH_STUDENT WHERE STUDENT_ID = (SELECT ID FROM STUDENT WHERE NAME=  'RAMU'));
+
+3. FIND OUT ALL THE STUDENTS COUNT IN JUNE BATCH
+   ANS: SELECT COUNT(*) FROM BATCH_STUDENT BS,BATCH B WHERE B.ID = BS.BATCH_ID AND B.NAME = 'JUNE BATCH';
+
+      (OR)
+  
+    SELECT COUNT(*) FROM BATCH_STUDENT WHERE BATCH_ID = (SELECT ID FROM BATCH WHERE NAME = 'JUNE BATCH');
+
+
+4.FIND OUT ALL THE BATCHES COUNT KIRAN
+  ANS: SELECT COUNT(*) FROM STUDENT S, BATCH_STUDENT BS WHERE S.ID = BS.STUDENT_ID AND S.NAME = 'KIRAN';
+
+       (OR)
+
+   SELECT COUNT(*) FROM BATCH_STUDENT WHERE STUDENT_ID = (SELECT ID FROM STUDENT WHERE NAME = 'KIRAN');
+
+5.READ EVERY BATCH STUDENT AND  STUDNET INFO
+  ANS: SELECT * FROM STUDENT FULL OUTER JOIN BATCH ON STUDENT.ID = BATCH.ID;  // For two tables info
+
+       (OR)
+
+       SELECT * FROM BATCH, STUDENT, BATCH_STUDENT WHERE BATCH.ID = BATCH_STUDENT.BATCH_ID AND STUDENT.ID = BATCH_STUDENT.STUDENT_ID;  // For three tables info
+
+ OUTPUT:
+--------
+ID         NAME         DURATION        ID      NAME    AGE   BATCH_ID    STUDENT_ID
+--       -------      ------------     ---     ------  -----  --------    ----------
+2	JULY BATCH	6 MONTHS	1	RAMU	32	2	      1
+1	JUNE BATCH	6 MONTHS	1	RAMU	32	1	      1 
+1	JUNE BATCH	6 MONTHS	2	MOHAN	42	1	      2
+1	JUNE BATCH	6 MONTHS	3	MURALI	32	1	      3
+3	AUG BATCH	6 MONTHS	4	RUPA	28	3	      4
+2	JULY BATCH	6 MONTHS	4	RUPA	28	2	      4
+2	JULY BATCH	6 MONTHS	5	RAVALI	29	2	      5
+3	AUG BATCH	6 MONTHS	6	RAGHU	28	3	      6
+2	JULY BATCH	6 MONTHS	6	RAGHU	28	2	      6
+3	AUG BATCH	6 MONTHS	7	PAVAN	26	3	      7
+3	AUG BATCH	6 MONTHS	8	SWATHI	25	3	      8
+
+
+6.INNER JOIN BETWEEN BATCH AND STUDENT
+  ANS: SELECT * FROM STUDENT INNER JOIN BATCH ON STUDENT.ID = BATCH.ID;  // For two tables
+
+      (OR)
+
+      SELECT * FROM BATCH B INNER JOIN BATCH_STUDENT BS ON B.ID = BS.BATCH_ID INNER JOIN STUDENT S ON BS.STUDENT_ID = S.ID;
+
+  OUTPUT:
+----------
+
+ID         NAME         DURATION     BATCH_ID    STUDENT_ID   ID        NAME       AGE
+--       -------      ------------     ---       ----------  -----     ------    ------
+2	JULY BATCH	6 MONTHS	2	     1	       1	RAMU	   32
+1	JUNE BATCH	6 MONTHS	1	     1	       1	RAMU	   32
+1	JUNE BATCH	6 MONTHS	1	     2	       2	MOHAN	   42
+1	JUNE BATCH	6 MONTHS	1	     3 	       3	MURALI	   32
+3	AUG BATCH	6 MONTHS	3	     4	       4	RUPA	   28
+2	JULY BATCH	6 MONTHS	2	     4	       4	RUPA	   28
+2	JULY BATCH	6 MONTHS	2	     5	       5	RAVALI	   29
+3	AUG BATCH	6 MONTHS	3	     6	       6	RAGHU	   28
+2	JULY BATCH	6 MONTHS	2	     6	       6	RAGHU	   28
+3	AUG BATCH	6 MONTHS	3	     7	       7	PAVAN	   26
+3	AUG BATCH	6 MONTHS	3	     8	       8	SWATHI	   25
+
+
+7.LEFT JOIN BETWEEN BATCH AND STUDENT
+  ANS: SELECT * FROM STUDENT LEFT OUTER JOIN BATCH ON STUDENT.ID = BATCH.ID;
+
+    (OR)
+
+    SELECT * FROM BATCH B LEFT OUTER JOIN BATCH_STUDENT BS ON B.ID = BS.BATCH_ID INNER JOIN STUDENT S ON BS.STUDENT_ID = S.ID;
+    (OR)
+    SELECT * FROM BATCH B INNER JOIN BATCH_STUDENT BS ON B.ID = BS.BATCH_ID LEFT OUTER JOIN STUDENT S ON BS.STUDENT_ID = S.ID;
+
+OUTPUT:
+-------
+ID         NAME         DURATION     BATCH_ID    STUDENT_ID   ID        NAME       AGE
+--       -------      ------------     ---       ----------  -----     ------    ------
+2	JULY BATCH	6 MONTHS	2	     1	       1	RAMU	   32
+1	JUNE BATCH	6 MONTHS	1	     1	       1	RAMU	   32
+1	JUNE BATCH	6 MONTHS	1	     2	       2	MOHAN	   42
+1	JUNE BATCH	6 MONTHS	1	     3 	       3	MURALI	   32
+3	AUG BATCH	6 MONTHS	3	     4	       4	RUPA	   28
+2	JULY BATCH	6 MONTHS	2	     4	       4	RUPA	   28
+2	JULY BATCH	6 MONTHS	2	     5	       5	RAVALI	   29
+3	AUG BATCH	6 MONTHS	3	     6	       6	RAGHU	   28
+2	JULY BATCH	6 MONTHS	2	     6	       6	RAGHU	   28
+3	AUG BATCH	6 MONTHS	3	     7	       7	PAVAN	   26
+3	AUG BATCH	6 MONTHS	3	     8	       8	SWATHI	   25
+
+   (OR)
+
+   SELECT * FROM BATCH B LEFT OUTER JOIN BATCH_STUDENT BS ON B.ID = BS.BATCH_ID LEFT OUTER JOIN STUDENT S ON BS.STUDENT_ID = S.ID;
+  
+  OUTPUT:
+----------
+ID         NAME         DURATION     BATCH_ID    STUDENT_ID   ID        NAME       AGE
+--       -------      ------------     ---       ----------  -----     ------    ------
+2	JULY BATCH	6 MONTHS	2	     1	       1	RAMU	   32
+1	JUNE BATCH	6 MONTHS	1	     1	       1	RAMU	   32
+1	JUNE BATCH	6 MONTHS	1	     2	       2	MOHAN	   42
+1	JUNE BATCH	6 MONTHS	1	     3 	       3	MURALI	   32
+3	AUG BATCH	6 MONTHS	3	     4	       4	RUPA	   28
+2	JULY BATCH	6 MONTHS	2	     4	       4	RUPA	   28
+2	JULY BATCH	6 MONTHS	2	     5	       5	RAVALI	   29
+3	AUG BATCH	6 MONTHS	3	     6	       6	RAGHU	   28
+2	JULY BATCH	6 MONTHS	2	     6	       6	RAGHU	   28
+3	AUG BATCH	6 MONTHS	3	     7	       7	PAVAN	   26
+3	AUG BATCH	6 MONTHS	3	     8	       8	SWATHI	   25
+4       APR BATCH       6 MONTHS      (null)       (null)    (null)     (null)    (null)
+
+
+8.RIGHT OUTER JOIN BETWEEN BATCH AND STUDENT
+  ANS: SELECT * FROM STUDENT RIGHT OUTER JOIN BATCH ON STUDENT.ID = BATCH.ID;
+
+   (OR)
+     
+     SELECT * FROM BATCH B RIGHT OUTER JOIN BATCH_STUDENT BS ON B.ID = BS.BATCH_ID INNER JOIN STUDENT S ON BS.STUDENT_ID = S.ID;
+ 
+OUTPUT:
+-------
+ID         NAME         DURATION     BATCH_ID    STUDENT_ID   ID        NAME       AGE
+--       -------      ------------     ---       ----------  -----     ------    ------
+2	JULY BATCH	6 MONTHS	2	     1	       1	RAMU	   32
+1	JUNE BATCH	6 MONTHS	1	     1	       1	RAMU	   32
+1	JUNE BATCH	6 MONTHS	1	     2	       2	MOHAN	   42
+1	JUNE BATCH	6 MONTHS	1	     3 	       3	MURALI	   32
+3	AUG BATCH	6 MONTHS	3	     4	       4	RUPA	   28
+2	JULY BATCH	6 MONTHS	2	     4	       4	RUPA	   28
+2	JULY BATCH	6 MONTHS	2	     5	       5	RAVALI	   29
+3	AUG BATCH	6 MONTHS	3	     6	       6	RAGHU	   28
+2	JULY BATCH	6 MONTHS	2	     6	       6	RAGHU	   28
+3	AUG BATCH	6 MONTHS	3	     7	       7	PAVAN	   26
+3	AUG BATCH	6 MONTHS	3	     8	       8	SWATHI	   25
+
+
+    SELECT * FROM BATCH B INNER JOIN BATCH_STUDENT BS ON B.ID = BS.BATCH_ID RIGHT OUTER JOIN STUDENT S ON BS.STUDENT_ID = S.ID;
+  (OR)
+   SELECT * FROM BATCH B RIGHT OUTER JOIN BATCH_STUDENT BS ON B.ID = BS.BATCH_ID RIGHT OUTER JOIN STUDENT S ON BS.STUDENT_ID = S.ID;
+
+OUTPUT:
+-------
+ID         NAME         DURATION     BATCH_ID    STUDENT_ID   ID        NAME       AGE
+--       -------      ------------     ---       ----------  -----     ------    ------
+1	JUNE BATCH	6 MONTHS	1	     1	       1	RAMU	   32
+1	JUNE BATCH	6 MONTHS	1	     2	       2	MOHAN	   42
+1	JUNE BATCH	6 MONTHS	1	     3	       3	MURALI	   32
+2	JULY BATCH	6 MONTHS	2	     1	       1	RAMU	   32
+2	JULY BATCH	6 MONTHS	2	     4	       4	RUPA	   28
+2	JULY BATCH	6 MONTHS	2	     5	       5	RAVALI	   29
+2	JULY BATCH	6 MONTHS	2	     6	       6	RAGHU	   28
+3	AUG BATCH	6 MONTHS	3	     7	       7	PAVAN	   26
+3	AUG BATCH	6 MONTHS	3	     8	       8	SWATHI	   25
+3	AUG BATCH	6 MONTHS	3	     4	       4	RUPA	   28
+3	AUG BATCH	6 MONTHS	3	     6	       6	RAGHU	   28
+(null)   (null)        (null)         (null)       (null)     10	TEST	   21
+(null)   (null)        (null)         (null)       (null)     11	KIRAN	   23
+(null)   (null)        (null)         (null)       (null)      9	SWETHA	   22
+
+
+
+9.FULL OUTER JOIN BETWEEN BATCH AND STUDENT
+  ANS: SELECT * FROM STUDENT FULL OUTER JOIN BATCH ON STUDENT.ID = BATCH.ID;
+   (OR)
+   SELECT * FROM BATCH B INNER JOIN BATCH_STUDENT BS ON B.ID = BS.BATCH_ID FULL OUTER JOIN STUDENT S ON BS.STUDENT_ID = S.ID;
+  
+  OUTPUT:
+----------
+ID         NAME         DURATION     BATCH_ID    STUDENT_ID   ID        NAME       AGE
+--       -------      ------------     ---       ----------  -----     ------    ------
+2	JULY BATCH	6 MONTHS	2	     1		1	RAMU	   32
+1	JUNE BATCH	6 MONTHS	1	     1		1	RAMU	   32
+1	JUNE BATCH	6 MONTHS	1	     2		2	MOHAN	   42
+1	JUNE BATCH	6 MONTHS	1	     3		3	MURALI	   32
+3	AUG BATCH	6 MONTHS	3	     4		4	RUPA	   28
+2	JULY BATCH	6 MONTHS	2      	     4		4	RUPA	   28
+2	JULY BATCH	6 MONTHS	2	     5		5	RAVALI	   29
+3	AUG BATCH	6 MONTHS	3	     6		6	RAGHU	   28
+2	JULY BATCH	6 MONTHS	2	     6		6	RAGHU	   28
+3	AUG BATCH	6 MONTHS	3	     7		7	PAVAN	   26
+3	AUG BATCH	6 MONTHS	3	     8		8	SWATHI	   25
+(null)   (null)        (null)         (null)       (null) 	9	SWETHA	   22
+(null)   (null)        (null)         (null)       (null) 	10	TEST	   21
+(null)   (null)        (null)         (null)       (null) 	11	KIRAN	   23
+
+SELECT * FROM BATCH B FULL OUTER JOIN BATCH_STUDENT BS ON B.ID = BS.BATCH_ID INNER JOIN STUDENT S ON BS.STUDENT_ID = S.ID;
+
+OUTPUT:
+-------
+ID         NAME         DURATION     BATCH_ID    STUDENT_ID   ID        NAME       AGE
+--       -------      ------------     ---       ----------  -----     ------    ------
+2	JULY BATCH	6 MONTHS	2	     1	       1	RAMU	   32
+1	JUNE BATCH	6 MONTHS	1	     1	       1	RAMU	   32
+1	JUNE BATCH	6 MONTHS	1	     2	       2	MOHAN	   42
+1	JUNE BATCH	6 MONTHS	1	     3 	       3	MURALI	   32
+3	AUG BATCH	6 MONTHS	3	     4	       4	RUPA	   28
+2	JULY BATCH	6 MONTHS	2	     4	       4	RUPA	   28
+2	JULY BATCH	6 MONTHS	2	     5	       5	RAVALI	   29
+3	AUG BATCH	6 MONTHS	3	     6	       6	RAGHU	   28
+2	JULY BATCH	6 MONTHS	2	     6	       6	RAGHU	   28
+3	AUG BATCH	6 MONTHS	3	     7	       7	PAVAN	   26
+3	AUG BATCH	6 MONTHS	3	     8	       8	SWATHI	   25
+
+SELECT * FROM BATCH B RIGHT OUTER JOIN BATCH_STUDENT BS ON B.ID = BS.BATCH_ID FULL OUTER JOIN STUDENT S ON BS.STUDENT_ID = S.ID;
+
+OUTPUT:
+-------
+ID         NAME         DURATION     BATCH_ID    STUDENT_ID   ID        NAME       AGE
+--       -------      ------------     ---       ----------  -----     ------    ------
+2	JULY BATCH	6 MONTHS	2	     1		1	RAMU	   32
+1	JUNE BATCH	6 MONTHS	1	     1		1	RAMU	   32
+1	JUNE BATCH	6 MONTHS	1	     2		2	MOHAN	   42
+1	JUNE BATCH	6 MONTHS	1	     3		3	MURALI	   32
+3	AUG BATCH	6 MONTHS	3	     4		4	RUPA	   28
+2	JULY BATCH	6 MONTHS	2      	     4		4	RUPA	   28
+2	JULY BATCH	6 MONTHS	2	     5		5	RAVALI	   29
+3	AUG BATCH	6 MONTHS	3	     6		6	RAGHU	   28
+2	JULY BATCH	6 MONTHS	2	     6		6	RAGHU	   28
+3	AUG BATCH	6 MONTHS	3	     7		7	PAVAN	   26
+3	AUG BATCH	6 MONTHS	3	     8		8	SWATHI	   25
+(null)   (null)        (null)         (null)       (null) 	9	SWETHA	   22
+(null)   (null)        (null)         (null)       (null) 	10	TEST	   21
+(null)   (null)        (null)         (null)       (null) 	11	KIRAN	   23
+
+
+SELECT * FROM BATCH B FULL OUTER JOIN BATCH_STUDENT BS ON B.ID = BS.BATCH_ID RIGHT OUTER JOIN STUDENT S ON BS.STUDENT_ID = S.ID;
+
+OUTPUT:
+-------
+ID         NAME         DURATION     BATCH_ID    STUDENT_ID   ID        NAME       AGE
+--       -------      ------------     ---       ----------  -----     ------    ------
+1	JUNE BATCH	6 MONTHS	1	     1	       1	RAMU	   32
+1	JUNE BATCH	6 MONTHS	1	     2	       2	MOHAN	   42
+1	JUNE BATCH	6 MONTHS	1	     3	       3	MURALI	   32
+2	JULY BATCH	6 MONTHS	2	     1	       1	RAMU	   32
+2	JULY BATCH	6 MONTHS	2	     4	       4	RUPA	   28
+2	JULY BATCH	6 MONTHS	2	     5	       5	RAVALI	   29
+2	JULY BATCH	6 MONTHS	2	     6	       6	RAGHU	   28
+3	AUG BATCH	6 MONTHS	3	     7	       7	PAVAN	   26
+3	AUG BATCH	6 MONTHS	3	     8	       8	SWATHI	   25
+3	AUG BATCH	6 MONTHS	3	     4	       4	RUPA	   28
+3	AUG BATCH	6 MONTHS	3	     6	       6	RAGHU	   28
+(null)   (null)        (null)         (null)       (null)     10	TEST	   21
+(null)   (null)        (null)         (null)       (null)     11	KIRAN	   23
+(null)   (null)        (null)         (null)       (null)      9	SWETHA	   22
+
+SELECT * FROM BATCH B LEFT OUTER JOIN BATCH_STUDENT BS ON B.ID = BS.BATCH_ID FULL OUTER JOIN STUDENT S ON BS.STUDENT_ID = S.ID;
+
+OUTPUT:
+-------
+ID         NAME         DURATION     BATCH_ID    STUDENT_ID   ID        NAME       AGE
+--       -------      ------------     ---       ----------  -----     ------    ------
+2	JULY BATCH	6 MONTHS	2	     1		1	RAMU	   32
+1	JUNE BATCH	6 MONTHS	1	     1		1	RAMU	   32
+1	JUNE BATCH	6 MONTHS	1	     2		2	MOHAN	   42
+1	JUNE BATCH	6 MONTHS	1	     3		3	MURALI	   32
+3	AUG BATCH	6 MONTHS	3	     4		4	RUPA	   28
+2	JULY BATCH	6 MONTHS	2      	     4		4	RUPA	   28
+2	JULY BATCH	6 MONTHS	2	     5		5	RAVALI	   29
+3	AUG BATCH	6 MONTHS	3	     6		6	RAGHU	   28
+2	JULY BATCH	6 MONTHS	2	     6		6	RAGHU	   28
+3	AUG BATCH	6 MONTHS	3	     7		7	PAVAN	   26
+3	AUG BATCH	6 MONTHS	3	     8		8	SWATHI	   25
+(null)   (null)        (null)         (null)       (null) 	9	SWETHA	   22
+(null)   (null)        (null)         (null)       (null) 	10	TEST	   21
+(null)   (null)        (null)         (null)       (null) 	11	KIRAN	   23
+4	APR BATCH	6 MONTHS      (null)       (null)     (null)   (null)    (null)		
+		
+
+SELECT * FROM BATCH B FULL OUTER JOIN BATCH_STUDENT BS ON B.ID = BS.BATCH_ID LEFT OUTER JOIN STUDENT S ON BS.STUDENT_ID = S.ID;
+
+OUTPUT:
+-------
+ID         NAME         DURATION     BATCH_ID    STUDENT_ID   ID        NAME       AGE
+--       -------      ------------     ---       ----------  -----     ------    ------
+2	JULY BATCH	6 MONTHS	2	     1	       1	RAMU	   32
+1	JUNE BATCH	6 MONTHS	1	     1	       1	RAMU	   32
+1	JUNE BATCH	6 MONTHS	1	     2	       2	MOHAN	   42
+1	JUNE BATCH	6 MONTHS	1	     3 	       3	MURALI	   32
+3	AUG BATCH	6 MONTHS	3	     4	       4	RUPA	   28
+2	JULY BATCH	6 MONTHS	2	     4	       4	RUPA	   28
+2	JULY BATCH	6 MONTHS	2	     5	       5	RAVALI	   29
+3	AUG BATCH	6 MONTHS	3	     6	       6	RAGHU	   28
+2	JULY BATCH	6 MONTHS	2	     6	       6	RAGHU	   28
+3	AUG BATCH	6 MONTHS	3	     7	       7	PAVAN	   26
+3	AUG BATCH	6 MONTHS	3	     8	       8	SWATHI	   25
+4       APR BATCH       6 MONTHS      (null)       (null)    (null)     (null)    (null)
+
+SELECT * FROM BATCH B FULL OUTER JOIN BATCH_STUDENT BS ON B.ID = BS.BATCH_ID FULL OUTER JOIN STUDENT S ON BS.STUDENT_ID = S.ID;
+
+OUTPUT:
+-------
+ID         NAME         DURATION     BATCH_ID    STUDENT_ID   ID        NAME       AGE
+--       -------      ------------     ---       ----------  -----     ------    ------
+1	JUNE BATCH	6 MONTHS	1	     1         1	RAMU	   32
+1	JUNE BATCH	6 MONTHS	1	     2	       2	MOHAN  	   42
+1	JUNE BATCH	6 MONTHS	1      	     3	       3	MURALI	   32
+2	JULY BATCH	6 MONTHS	2	     1	       1	RAMU	   32
+2	JULY BATCH	6 MONTHS	2	     4	       4	RUPA	   28
+2	JULY BATCH	6 MONTHS	2	     5	       5	RAVALI	   29
+2	JULY BATCH	6 MONTHS	2	     6	       6	RAGHU	   28
+3	AUG BATCH	6 MONTHS	3	     7	       7	PAVAN	   26
+3	AUG BATCH	6 MONTHS	3	     8         8	SWATHI	   25
+3	AUG BATCH	6 MONTHS	3	     4	       4 	RUPA	   28
+3	AUG BATCH	6 MONTHS	3	     6	       6	RAGHU	   28
+4	APR BATCH	6 MONTHS      (null)       (null)    (null)     (null)    (null)				
+(null)       (null)    (null)         (null)       (null)     10	TEST	   21
+(null)       (null)    (null)         (null)       (null)     11	KIRAN	   23
+(null)       (null)    (null)         (null)       (null)      9	SWETHA	   22
+
+EX:2:
+-----
+EMPLOYEE TABLE:
+---------------
+CREATE TABLE EMPLOYEE(ID NUMBER UNIQUE,NAME VARCHAR2(90),AGE NUMBER);
+
+INSERT INTO EMPLOYEE VALUES(1,'MOHAN',22);
+INSERT INTO EMPLOYEE VALUES(2,'MURALI',32);
+INSERT INTO EMPLOYEE VALUES(3,'KUMAR',20);
+INSERT INTO EMPLOYEE VALUES(4,'SWETHA',21);
+
+SKILL TABLE:
+------------
+CREATE TABLE SKILL(ID NUMBER UNIQUE,NAME VARCHAR2(90));
+
+INSERT INTO SKILL VALUES(1,'C');
+INSERT INTO SKILL VALUES(2,'C++');
+INSERT INTO SKILL VALUES(3,'JAVA');
+INSERT INTO SKILL VALUES(4,'SQL');
+
+EMPLOYEE_SKILL TABLE:
+---------------------
+CREATE TABLE EMPLOYEE_SKILL(EMPLOYEE_ID NUMBER,SKILL_ID NUMBER,
+                            CONSTRAINT EMP_FK1 FOREIGN KEY(EMPLOYEE_ID) REFERENCES EMPLOYEE(ID),
+                            CONSTRAINT EMP_FK2 FOREIGN KEY(SKILL_ID) REFERENCES SKILL(ID));
+
+INSERT INTO EMPLOYEE_SKILL VALUES(1,1);
+INSERT INTO EMPLOYEE_SKILL VALUES(1,2);
+INSERT INTO EMPLOYEE_SKILL VALUES(2,2);
+INSERT INTO EMPLOYEE_SKILL VALUES(2,3);
+INSERT INTO EMPLOYEE_SKILL VALUES(4,1);
+INSERT INTO EMPLOYEE_SKILL VALUES(4,2);
+INSERT INTO EMPLOYEE_SKILL VALUES(4,3);
+
+ASSIGNMENT:
+-----------
+1. READ ALL THE SKILLS OF MOHAN
+ANS: SELECT * FROM SKILL WHERE ID IN (SELECT SKILL_ID FROM EMPLOYEE_SKILL WHERE EMPLOYEE_ID = (SELECT ID FROM EMPLOYEE WHERE NAME = 'MOHAN'));
+
+2. READ ALL THE SKILLS OF MURALI
+ANS: SELECT * FROM SKILL WHERE ID IN (SELECT SKILL_ID FROM EMPLOYEE_SKILL WHERE EMPLOYEE_ID = (SELECT ID FROM EMPLOYEE WHERE NAME = 'MURALI'));
+
+3. READ ALL EMPLOYEE WHO KNOWS JAVA
+ANS: SELECT * FROM EMPLOYEE WHERE ID IN (SELECT EMPLOYEE_ID FROM EMPLOYEE_SKILL WHERE SKILL_ID = (SELECT ID FROM SKILL WHERE NAME = 'JAVA'));
+
+4. READ ALL EMPLOYEE WHO KNOWS C++
+ANS: SELECT * FROM EMPLOYEE WHERE ID IN (SELECT EMPLOYEE_ID FROM EMPLOYEE_SKILL WHERE SKILL_ID = (SELECT ID FROM SKILL WHERE NAME = 'C++'));
+
+5. READ ALL EMPLOYEES AND THEIR CORRESPONDING SKILLS
+ANS: SELECT * FROM EMPLOYEE E,EMPLOYEE_SKILL ES,SKILL S WHERE ES.EMPLOYEE_ID = E.ID AND ES.SKILL_ID = S.ID;
+ 
+  (OR)
+
+  SELECT * FROM EMPLOYEE E INNER JOIN EMPLOYEE_SKILL ES ON E.ID = ES.EMPLOYEE_ID INNER JOIN SKILL S ON S.ID = ES.SKILL_ID;
+
+6. READ ALL EMPLOYEES AND THEIR CORRESPONDING SKILLS INCLUDING NO SKILLS EMPLOYEES
+ANS: SELECT * FROM SKILL S RIGHT OUTER JOIN EMPLOYEE_SKILL ES ON S.ID = ES.SKILL_ID RIGHT OUTER JOIN EMPLOYEE E ON E.ID = ES.EMPLOYEE_ID;
+   
+   (OR)
+  
+   SELECT * FROM EMPLOYEE E LEFT OUTER JOIN EMPLOYEE_SKILL ES ON E.ID = ES.EMPLOYEE_ID LEFT OUTER JOIN SKILL S ON S.ID = ES.SKILL_ID;
+
+   (OR)
+  
+     SELECT * FROM EMPLOYEE E LEFT OUTER JOIN EMPLOYEE_SKILL ES ON E.ID = ES.EMPLOYEE_ID FULL OUTER JOIN SKILL S ON S.ID = ES.SKILL_ID;
+
+7. READ ALL THE SKILLS AND THEIR CORRESPONDING EMPLOYEES INCLUDING SKILLS WHICH ARE NOT KNOWING TO ANY EMPLOYEES 
+ANS: SELECT * FROM SKILL S LEFT OUTER JOIN EMPLOYEE_SKILL ES ON S.ID = ES.SKILL_ID LEFT OUTER JOIN EMPLOYEE E ON E.ID = ES.EMPLOYEE_ID;
+   
+   (OR)
+
+      SELECT * FROM EMPLOYEE E RIGHT OUTER JOIN EMPLOYEE_SKILL ES ON E.ID = ES.EMPLOYEE_ID RIGHT OUTER JOIN SKILL S ON S.ID = ES.SKILL_ID;
+
+   (OR)
+
+      SELECT * FROM EMPLOYEE E RIGHT OUTER JOIN EMPLOYEE_SKILL ES ON E.ID = ES.EMPLOYEE_ID FULL OUTER JOIN SKILL S ON S.ID = ES.SKILL_ID;
+
+-> First join can be any join but we can get the  same result
+
+8. READ ALL THE SKILLS AND THEIR CORRESPONDING EMPLOYEES INCLUDING SKILLS WHICH ARE NOT KNOWING TO ANY EMPLOYEES NO SKILLS                                              EMPLOYEE
+ANS: SELECT * FROM SKILL S FULL OUTER JOIN EMPLOYEE_SKILL ES ON S.ID = ES.SKILL_ID FULL OUTER JOIN EMPLOYEE E ON E.ID = ES.EMPLOYEE_ID;
+
+   (OR) 
+
+SELECT * FROM EMPLOYEE E LEFT OUTER JOIN EMPLOYEE_SKILL ES ON E.ID = ES.EMPLOYEE_ID FULL OUTER JOIN SKILL S ON S.ID = ES.SKILL_ID;
+
+
+
+Using the date & Timestamp column type :
+----------------------------------------
+Date    ==> day + month + year + hour + minute + second 
+timestamp  ==> day + month + year + hour + minute + second + millies
+
+-> milli sec is called as millies
+
+SYSDATE : Oracle specific gives exact where the server is running
+
+CREATE TABLE PERSON(ID NUMBER,
+                    NAME VARCHAR2(90),
+                    EMAIL VARCHAR2(90),
+                    DOB TIMESTAMP,
+                    DOJ DATE);
+                    
+INSERT INTO PERSON VALUES(1,'MOHAN','M@GMAIL.COM',SYSDATE,SYSDATE);
+SELECT * FROM PERSON;
+
+OUTPUT:
+-------
+ID     NAME        EMAIL                      DOB                  DOJ
+--     ----      ---------      ------------------------------  ---------
+1      MOHAN	M@GMAIL.COM	27-08-23 10:37:05.000000000 AM	27-08-23
+
+Symbol	Date or Time Component	Examples
+------  ----------------------  --------
+G	Era designator	           AD
+y	Year	                 1996; 96
+Y	Week year	         2009; 09
+M	Month in year		July; July; 07
+w	Week in year		   27
+W	Week in month		    2
+D	Day in year	 	   10
+d	Day in month	            2
+E	Day name in week	Tuesday; Tue
+u	Day number of week  (1 = Monday, 7 = Sunday)	1
+a	AM/PM marker	           PM
+H	Hour in day (0-23)	   0
+k	Hour in day (1-24)	   24
+K	Hour in AM/PM (0-11)	   0
+h	Hour in AM/PM (1-12)	   12
+MI	Minute in hour	           60
+s	Second in minute	   55
+F	Millisecond	           978
+z	Time zone	Pacific Standard Time; PST; GMT-08:00
+Z	Time zone	          -800
+X	Time zone	    -08; -0800; -08:00
+------------------------------------------------
+MM	==>	Month	(01-12)
+MON	==>	Month in the abrrivated (JAN, FEB, ...)
+MONTH	==>	Name of the Month
+YY	==>	Year (14, 15)
+YYYY	==>	Year (2014, 2015)
+DD	==>	Day of the month.
+HH24	==>	Hour of the day(0-23)
+HH12	==>	Hour of the day(1-12)
+HH	==>	Hour of the day(1-12)
+
+AM, PM		==>	|
+A.M, P.M	==>	|	Meridian Indicator
+
+MI		==>	Minute (0-59)
+SS		==>	Second(0-59)
+FF		==>	Milliseconds (0-999)
+
+note: all the above letters are case in sensitive
+--------------------------------------------
+
+--> to_date  ==> to convert String/Varchar2 value to Date/Timestamp component
+--> to_timestamp  ==>  to convert String/Varchar2 value to Timestamp component
+--> to_char  ==> to convert date/Timestamp component to String value
+
+SELECT TO_CHAR(DOJ,'DD/MM/YYYY') FROM PERSON;
+
+OUTPUT:
+-------
+TO_CHAR(DOJ,'DD/MM/YYYY')
+-------------------------
+27/08/2023
+
+SELECT TO_CHAR(DOJ,'YYYY/MM/DD') FROM PERSON;
+SELECT TO_CHAR(DOJ,'DD.MM.YYYY') FROM PERSON;
+
+OUTPUT:
+-------
+TO_CHAR(DOJ,'DD.MM.YYYY')
+-------------------------
+27.08.2023
+
+SELECT TO_CHAR(DOJ,'YY') FROM PERSON;
+
+OUTPUT:
+-------
+TO_CHAR(DOJ,'YY')
+-------------------------
+23
+
+SELECT TO_CHAR(DOJ,'DD') FROM PERSON;
+SELECT TO_CHAR(DOJ,'MM') FROM PERSON;
+SELECT TO_CHAR(DOJ,'DD/MM') FROM PERSON;
+SELECT TO_CHAR(DOJ,'DD/MM/YYYY')YEAR FROM PERSON;
+
+OUTPUT:
+-------
+  YEAR
+  ----
+27/08/2023
+
+SELECT TO_CHAR(DOJ,'DD/MM/YYYY HH MM SS') FROM PERSON;
+
+OUTPUT:
+-------
+TO_CHAR(DOJ,'DD/MM/YYYY HH MM SS')
+----------------------------------
+     27/08/2023 10 08 05
+
+SELECT TO_CHAR(DOJ,'DD/MM/YYYY HH MM SS') TIME FROM PERSON;
+
+OUTPUT:
+-------
+     TIME
+ -----------------
+ 27/08/2023 10 08 05
+
+INSERT INTO PERSON VALUES(3,'RUPA','R@GMAIL.COM','20-FEB-2020','25-MAY-2022');
+INSERT INTO PERSON VALUES(4,'KUMAR','K@GMAIL.COM','20/FEB/2020','25/MAY/2022');
+INSERT INTO PERSON VALUES(5,'KUMAR','KU@GMAIL.COM',
+                  TO_DATE('20-FEB-2020','DD-MON-YYYY'),
+                  TO_DATE('25-MAY-2022','DD-MON-YYYY'));
+
+   (OR)
+
+INSERT INTO PERSON VALUES(5,'KUMAR','KU@GMAIL.COM',
+                  TO_DATE('20-02-2020','DD-MM-YYYY'),
+                  TO_DATE('25-05-2022','DD-MM-YYYY'));
+INSERT INTO PERSON VALUES(6,'RAMA','RA@GMAIL.COM',
+                  TO_DATE('22-MAR-2020 11:25:45','DD-MON-YYYY hh:MI:ss'),
+                  TO_DATE('25-MAY-2022 02:45:23','DD-MON-YYYY hh:MI:ss')); 
+SELECT * FROM PERSON;
+
+OUTPUT:
+-------
+ID      NAME      EMAIL                  DOB                      DOJ
+--      ----     --------       -----------------------------    -------
+1	MOHAN	M@GMAIL.COM	27-08-23 10:37:05.000000000 AM	27-08-23
+2	RAMU	R@GMAIL.COM	20-02-20 12:00:00.000000000 AM	25-04-22
+3	RUPA	R@GMAIL.COM	20-02-20 12:00:00.000000000 AM	25-05-22
+4	KUMAR	K@GMAIL.COM	20-02-20 12:00:00.000000000 AM	25-05-22
+5	KUMAR	KU@GMAIL.COM	20-02-20 12:00:00.000000000 AM	25-05-22
+6	RAMA	RA@GMAIL.COM	22-03-20 11:25:45.000000000 AM	25-05-22
+7	RAMA	RA@GMAIL.COM	22-04-20 11:20:45.200000000 AM	25-08-22
+
+T1 TABLE:
+---------
+CREATE TABLE T1(ID NUMBER,COL1 DATE,COL2 TIMESTAMP);
+
+INSERT INTO T1 VALUES(1, SYSDATE, SYSDATE);
+INSERT INTO T1 VALUES(2,TO_DATE('12-25-2023','MM-DD-YYYY'),TO_DATE('16-04-2002','DD-MM-YYYY')); 
+INSERT INTO T1 VALUES(3,TO_DATE('14-06-2021 12:25:45','DD-MM-YYYY HH:MI:SS'),TO_DATE('23-04-2015 03:45:32','DD-MM-YYYY HH:MI:SS'));
+INSERT INTO T1 VALUES(4,TO_DATE('16-06-2021 12:25:45','DD-MM-YYYY HH:MI:SS'),TO_TIMESTAMP('23-04-2015 03:45:32.450','DD-MM-YYYY HH:MI:SS.FF'));
+
+SELECT * FROM T1;`
+OUTPUT:
+-------
+ID	  COL 1                 COL2
+-- 	 ------- 	-----------------------------
+1	27-08-23	27-08-23 12:35:30.000000000 PM
+2	25-12-23	16-04-02 12:00:00.000000000 AM
+3	14-06-21	23-04-15 3:45:32.000000000 AM
+4	16-06-21	23-04-15 3:45:32.450000000 AM
+
+SELECT TO_CHAR(COL1,'DD-MM-YYYY HH:MI:SS'),TO_CHAR(COL2,'DD-MM-YYYY HH:MI:SS:FF') FROM T1;
+OUTPUT:
+-------
+TO_CHAR(COL1,'DD-MM-YYYY HH:MI:SS')    TO_CHAR(COL2,'DD-MM-YYYY HH:MI:SS:FF')
+-----------------------------------    --------------------------------------
+27-08-2023 12:35:30	                  27-08-2023 12:35:30:000000
+25-12-2023 12:00:00	                  16-04-2002 12:00:00:000000
+14-06-2021 12:25:45	                  23-04-2015 03:45:32:000000
+16-06-2021 12:25:45	                  23-04-2015 03:45:32:450000
+
+SELECT TO_CHAR(COL1,'DD-MM-YYYY HH:MI:SS') AS "DATE VALUE",TO_CHAR(COL2,'DD-MM-YYYY HH:MI:SS:FF') AS "TIMESTAMP VALUE" FROM T1;
+OUTPUT:
+-------
+  DATE VALUE                TIMESTAMP VALUE
+--------------------    -------------------------------
+27-08-2023 12:35:30	   27-08-2023 12:35:30:000000
+25-12-2023 12:00:00	   16-04-2002 12:00:00:000000
+14-06-2021 12:25:45	   23-04-2015 03:45:32:000000
+16-06-2021 12:25:45	   23-04-2015 03:45:32:450000
+
+
+EMPLOYEE TABLE:
+---------------
+CREATE TABLE EMPLOYEE(EMP_ID VARCHAR2(90),
+                      NAME VARCHAR2(90),
+                      BIRTH_DATE TIMESTAMP,
+                      JOING_DATE DATE);
+
+INSERT INTO EMPLOYEE VALUES('EMP101','MOHAN',
+                            TO_DATE('10-01-2000','DD-MM-YYYY'),
+                            TO_DATE('10-04-2002','DD-MM-YYYY'));
+
+INSERT INTO EMPLOYEE VALUES('EMP102','PAVANI',
+                            TO_DATE('16-09-1998 10:20:45 AM','DD-MM-YYYY HH:MI:SS AM'),
+                            TO_DATE('14-03-2001 12:32:30 PM','DD-MM-YYYY HH:MI:SS PM'));
+SELECT * FROM EMPLOYEE;
+INSERT INTO EMPLOYEE VALUES('EMP103','RUPA',
+                            TO_DATE('12-02-1999','DD-MM-YYYY'),
+                            TO_DATE('16-05-2001','DD-MM-YYYY'));
+
+ASSIGNMENT:
+-----------
+1. FIND OUT EMPLOYEE WHO BORN IN 1999
+ANS: SELECT NAME FROM EMPLOYEE WHERE TO_CHAR(BIRTH_DATE,'YYYY')=1999;
+
+2.FIND OUT EMPLOYEE WHO BORN JOINED IN 2029
+ANS: SELECT NAME FROM EMPLOYEE WHERE TO_CHAR(JOING_DATE,'YYYY')=2022;
+
+3. FIND OUT EMPLOYEE WHOS BIRTH MONTH IS JAN
+ANS: SELECT NAME FROM EMPLOYEE WHERE TO_CHAR(BIRTH_DATE,'MM')=01;
+
+4. FIND OUT EMPLOYEE WHO JOINED IN AUG MONTH
+ANS: SELECT NAME FROM EMPLOYEE WHERE TO_CHAR(JOING_DATE,'MM')=08;
+
+5. FIND OUT EMPLOYEE WHO JOINED IN ANY MONTH 16TH
+ANS: SELECT NAME FROM EMPLOYEE WHERE TO_CHAR(JOING_DATE,'DD')=16;
+
+6. FIND OUT EMPLOYEE WHOS DATE OF BIRTH IS 10TH IN ANY MONTH
+ANS: SELECT NAME FROM EMPLOYEE WHERE TO_CHAR(BIRTH_DATE,'DD')=10;
+
+
+
+SELF JOIN: Two table of same data in a single entity data in the below example we can observe that table contains the 
+--------   employee id and manager id .
+
+EMPLOYEE TABLE:
+---------------
+CREATE TABLE EMPLOYEE(EMP_ID NUMBER UNIQUE, NAME VARCHAR2(90),AGE NUMBER, SALARY NUMBER, MANAGER_ID NUMBER);
+
+INSERT INTO EMPLOYEE(EMP_ID,NAME,AGE,SALARY) VALUES(1,'MOHAN',22,34343);
+INSERT INTO EMPLOYEE VALUES(2,'RAMU',23,34346,1);
+INSERT INTO EMPLOYEE VALUES(3,'KIRAN',22,35443,1);
+INSERT INTO EMPLOYEE VALUES(4,'KUMAR',22,45444,2);
+INSERT INTO EMPLOYEE VALUES(5,'BABU',22,45454,2);
+INSERT INTO EMPLOYEE VALUES(6,'SWATHI',22,57674,3);
+INSERT INTO EMPLOYEE VALUES(7,'PAVANI',22,35443,3);
+SELECT * FROM EMPLOYEE;
+
+OUTPUT: 
+-------
+ID      NAME   AGE     SALARY  MANAGER_ID
+--    	----   ---     ------  ----------
+1	MOHAN	22	34343  null	
+2	RAMU	23	34346	1
+3	KIRAN	22	35443	1
+4	KUMAR	22	45444	2
+5	BABU	22	45454	2
+6	SWATHI	22	57674	3
+7	PAVANI	22	35443	3
+
+
+SELECT A.NAME NAME,B.NAME MANAGER_NAME FROM EMPLOYEE A LEFT OUTER JOIN EMPLOYEE B ON A.MANAGER_ID = B.EMP_ID;
+
+OUTPUT:
+-------
+NAME       MANAGER_NAME
+----       ------------
+KIRAN	       MOHAN
+RAMU	       MOHAN
+BABU	       RAMU
+KUMAR          RAMU
+PAVANI	       KIRAN
+SWATHI	       KIRAN
+MOHAN           null	
+
+SELECT A.NAME NAME,B.NAME MANAGER_NAME FROM EMPLOYEE A RIGHT OUTER JOIN EMPLOYEE B ON A.MANAGER_ID = B.EMP_ID;
+
+OUTPUT:
+-------
+NAME    MANAGER_NAME
+----    ------------
+RAMU	MOHAN
+KIRAN	MOHAN
+KUMAR	RAMU
+BABU	RAMU
+SWATHI	KIRAN
+PAVANI	KIRAN
+null	BABU
+null	SWATHI
+null	PAVANI
+null	KUMAR
+
+
+SELECT A.NAME NAME,B.NAME MANAGER_NAME FROM EMPLOYEE A FULL OUTER JOIN EMPLOYEE B ON A.MANAGER_ID = B.EMP_ID;
+
+OUTPUT:
+-------
+NAME    MANAGER_NAME
+----    ------------
+KIRAN	MOHAN
+RAMU	MOHAN
+BABU	RAMU
+KUMAR	RAMU
+PAVANI	KIRAN
+SWATHI	KIRAN
+null	KUMAR
+null	BABU
+null	SWATHI
+null	PAVANI
+MOHAN    null	
+
+SELECT A.NAME NAME,B.NAME MANAGER_NAME FROM EMPLOYEE A INNER JOIN EMPLOYEE B ON A.MANAGER_ID = B.EMP_ID;
+
+OUTPUT:
+-------
+NAME    MANAGER_NAME
+----    ------------
+KIRAN	MOHAN
+RAMU	MOHAN
+BABU	RAMU
+KUMAR	RAMU
+PAVANI	KIRAN
+SWATHI	KIRAN
+
+PERRSON TABLE:
+--------------
+CREATE TABLE PERSON(ID NUMBER,NAME VARCHAR2(90), CITY VARCHAR2(90));
+
+INSERT INTO PERSON VALUES(1,'RAMU','BANGALORE');
+INSERT INTO PERSON VALUES(2,'MOHAN','HYDERABAD');
+INSERT INTO PERSON VALUES(3,'KUMAR','BANGALORE');
+INSERT INTO PERSON VALUES(4,'KUMAR','HYDERABAD');
+UPDATE PERSON SET NAME = 'VENKY' WHERE ID = 4;
+SELECT * FROM PERSON;
+
+SELECT A.NAME A_NAME , B.NAME B_NAME , A.CITY FROM PERSON A, PERSON B WHERE A.CITY = B.CITY AND A.ID != B.ID;
+
+OUTPUT:
+-------
+A_NAME   B_NAME    CITY
+------   ------    ----
+KUMAR	  RAMU	  BANGALORE
+VENKY	  MOHAN	  HYDERABAD
+RAMU	  KUMAR	  BANGALORE
+MOHAN	  VENKY	  HYDERABAD
+
+
+
+NORMALIZATIONS:
+---------------
+-> Rules to be following while designing database for the projects
+  --> 1NF : Every column should have a 'atomic value'
+ 
+Atomic value: An atomic value is a value that cannot be divided
+
+ID   NAME      MARKS
+--   ----     -------
+1    RAMU     34, 45, 50
+2    KUMAR    44, 75, 90        ==> VOILATES THE 1ST NORMAL FROM(1NF)
+3    MOHAN    54, 85, 60
+
+--> Marks column voilating 1NF
+
+--> Because for each column should have only one value but in the data for each student contains 3 marks in one row
+
+-> Try the above table and change it into 1NF
+
+PERSON TABLE:
+-------------
+ID     NAME 
+--     ----
+1      RAMU
+2      KUMAR
+3      MOHAN
+
+MARKS TABLE:
+------------
+PERSON_ID     MARKS
+---------     -----
+1               34
+1		45
+1		50
+2		44
+2		75
+2		90
+3		54
+3		85
+3		60
+
+-> By using foreign key we can find the students marks and this tables is in 1NF
+
+2NF:  Every Non primary column should be 'fully functional dependent' on primary key column should not be partially 
+----  dependent
+
+--> first it should follow 1NF later it will check if it is based on 2NF
+
+
+SUBJECT TABLE:
+--------------
+ID    NAME     TEACHER     TEACHER_AGE
+--    ----     -------     -----------
+1    MATHS      KUMAR         29
+2   CHEMISTRY   BHANU         39
+3    PHYSICS    KUMAR         29
+4    ENGLISH    BHANU         39
+
+--> id is a primary key
+
+--> Name as non primary key is fully depending on the id as primary key
+
+--> Teacher as non primary key is not fully dependent on id
+
+--> Here teacher and teacher_age is not fully dependent on id so this is voilating the 2nd Normal Form(2NF) 
+
+
+MAKE THE SUBJECT TABLE TO FOLLOW 2NF
+------------------------------------
+SUBJECT TABLE
+-------------
+ID     NAME
+--     ----
+1      MATHS
+2     CHEMISTRY
+3      PHYSICS
+4      ENGLISH
+
+
+TEACHER TABLE:
+--------------
+ID      TEACHER      TEACHER_AGE
+--      -------      -----------
+1        KUMAR          29
+2        BHANU          39
+
+
+SUBJECT_TEACHER TABLE
+----------------------
+SUBJECT_ID     TEACHER_ID
+----------     ----------
+   1              1
+   2              2
+   3              1
+   4		  2
+
+
+
+3NF: Non primary key column should not have 'transient dependency' on primary key column
+----
+
+-> It should be follow 2nd Normal Form(2NF) and avoid transient dependency
+
+PERSON TABLE:
+-------------
+ID    NAME    AGE     ADDRESS_ID    HOUSE_NO    STREET_NAME
+--    ----    ---     ----------    --------    -----------
+1    KUMAR    22         101         34/T           BTM
+2    MOHAN    24         102         34/U           BTM
+
+
+--> HOUSE_NO is not directly depending on ID in this the mediater is ADDRESS_ID , so the HOUSE_NO is transient depending on ID
+
+->  HOUSE_NO AND STREET_NAME are depending on ADDRESS_ID
+    ADDRESS_ID depending on ID
+    So HOUSE_NO AND STREET_NAME is transient depending
+
+   
+ADDRESS TABLE:
+--------------
+ID    HOUSE_NO    STREET_NAME
+--    --------    -----------
+1      34/T         BTM
+2      34/U         BTM
+
+
+PERSON TABLE
+------------
+ID    NAME    AGE   ADDRESS_ID
+--    ----    ---  -----------
+1    KUMAR    22       1
+2    MOHAN    24       2
+
+
+
+1) RENAME/CHANGE THE TABLE NAME:
+   -----------------------------
+CREATE TABLE PERSON(ID NUMBER, NAME VARCHAR2(90));
+
+RENAME PERSON TO PERSON1;
+-> Person table is changed to Person1 table
+
+
+
+2) CHANGING THE COLUMN NAME:
+   -------------------------
+ALTER TABLE PERSON1 RENAME COLUMN ID TO ID1;
+ALTER TABLE PERSON1 RENAME COLUMN NAME TO FIRST_NAME; 
+
+-> Id and name is changed as Id1 and First_name
+
+
+
+3) CHANGING THE WIDTH/SIZE OF THE COLUMN:
+   --------------------------------------
+ALTER TABLE PERSON1 MODIFY FIRST_NAME VARCHAR2(150); 
+
+-> Here the width of the column is changed from 90 tp 150
+
+
+
+4) CHANGE COLUMN DATATYPE:
+   ------------------------
+ALTER TABLE PERSON1 MODIFY ID1 VARCHAR2(90);
+
+-> Here the Id data type is converted Number into Varchar
+
+DESC PERSON1;
+
+Name       Null? Type          
+---------- ----- ------------- 
+ID1              VARCHAR2(90)  
+FIRST_NAME       VARCHAR2(150) 
+
+
+
+5) ADDING NEW COLUMN TO THE EXISTING TABLE:
+   ----------------------------------------
+ALTER TABLE PERSON1 ADD AGE NUMBER;
+ALTER TABLE PERSON1 ADD EMAIL VARCHAR2(90);
+
+-> Age and Email columns is added
+
+DESC PERSON1;
+
+Name       Null? Type          
+---------- ----- ------------- 
+ID1              VARCHAR2(90)  
+FIRST_NAME       VARCHAR2(150) 
+AGE              NUMBER   
+EMAIL            VARCHAR2(90)  
+
+
+
+6) REMOVE AN EXISTING COLUMN:
+   --------------------------
+ALTER TABLE PERSON1 DROP COLUMN AGE;
+
+-> Here Age column is dropped
+
+
+7) ADD NOT NULL TO A COLUMN:
+   ------------------------
+
+ALTER TABLE PERSON1 MODIFY ID1 NUMBER NOT NULL;
+ALTER TABLE PERSON1 MODIFY FIRST_NAME NOT NULL;
+
+DESC PERSON1;
+
+Name       Null?    Type          
+---------- -------- ------------- 
+ID1        NOT NULL NUMBER        
+FIRST_NAME NOT NULL VARCHAR2(150) 
+EMAIL               VARCHAR2(90) 
+
+
+8) ADD AN UNIQUE TO A COLUMN:
+   --------------------------
+ALTER TABLE PERSON1 MODIFY ID1 UNIQUE;
+ALTER TABLE PERSON1 MODIFY EMAIL UNIQUE;
+
+-> Here the Id1 and Email column declared as UNIQUE
+
+
+9) ADD AN UNIQUE CONSTRAINT TO A COLUMN:
+   -------------------------------------
+ALTER TABLE PERSON1 ADD CONSTRAINT PERSON1_UK1 UNIQUE (FIRST_NAME);
+
+INSERT INTO PERSON1 VALUES(1,'ABC','A@A.COM');  
+INSERT INTO PERSON1 VALUES(2,'ABC','A1@A.COM');  // ERROR
+
+-> Because the First_name is same because the First_name is declared as UNIQUE, so by using the Constraint name we can desable the UNIQUENESS First_name 
+
+
+10) DISABLE THE CONSTRAINT :
+    -------------------------
+ALTER TABLE PERSON1 DISABLE CONSTRAINT PERSON1_UK1;
+
+INSERT INTO PERSON1 VALUES(1,'ABC','A@A.COM');  
+INSERT INTO PERSON1 VALUES(2,'ABC','A1@A.COM');  // it will insert
+
+
+11) ENABLE THE CONSTRAINT:
+    ----------------------
+ALTER TABLE PERSON1 ENABLE CONSTRAINT PERSON1_UK1;  // ERROR
+
+-> because in the second row the First_name is same as 'ABC' so after changing the First_name then the Constraint is Enable
+
+UPDATE PERSON1 SET FIRST_NAME = 'ABC1' WHERE ID1 = 2;
+ALTER TABLE PERSON1 ENABLE CONSTRAINT PERSON1_UK1;  // it will alter
+
+
+12) DROP THE CONSTRAINT:
+    --------------------
+ALTER TABLE PERSON1 DROP CONSTRAINT PERSON1_UK1;
+
+
+ASSIGNMENT:
+-----------
+ADD/DISABLE/ENABLE/DROP PRIMARY KEY
+-----------------------------------
+ALTER TABLE PERSON1 ADD CONSTRAINT PERSON1_UK1 PRIMARY KEY(FIRST_NAME);
+ALTER TABLE PERSON1 DISABLE CONSTRAINT PERSON1_UK1;
+ALTER TABLE PERSON1 ENABLE CONSTRAINT PERSON1_UK1;
+ALTER TABLE PERSON1 DROP CONSTRAINT PERSON1_UK1;
+
+ADD/DISABLE/ENABLE/DROP FOREIGN KEY
+-----------------------------------
+CREATE TABLE JYOSHNA(ID NUMBER,NAME VARCHAR(90)UNIQUE);
+
+ALTER TABLE PERSON1 ADD CONSTRAINT PERSON1_UK2 FOREIGN KEY(NAME) REFERENCES JYOSHNA(NAME);
+ALTER TABLE PERSON1 DISABLE CONSTRAINT PERSON1_UK2;
+ALTER TABLE PERSON1 ENABLE CONSTRAINT PERSON1_UK2;
+ALTER TABLE PERSON1 DROP CONSTRAINT PERSON1_UK2;
+
+
+
+INSERTING THE ID AS A SEQUENCE NUMBERS:
+---------------------------------------
+
+CREATE TABLE TAB6(ID NUMBER, NAME VARCHAR2(90));
+CREATE SEQUENCE TAB6_SEQ START WITH 1 INCREMENT BY 1;
+
+INSERT INTO TAB6 VALUES(TAB6_SEQ.NEXTVAL, 'ABC');
+INSERT INTO TAB6 VALUES(TAB6_SEQ.NEXTVAL, 'XYZ');
+INSERT INTO TAB6 VALUES(TAB6_SEQ.NEXTVAL, 'TEST');
+INSERT INTO TAB6 VALUES(TAB6_SEQ.NEXTVAL, 'HELLO');
+INSERT INTO TAB6 VALUES(TAB6_SEQ.NEXTVAL, 'MOHAN');
+INSERT INTO TAB6 VALUES(TAB6_SEQ.NEXTVAL, 'MURALI');
+
+SELECT * FROM TAB6;
+
+OUTPUT:
+-------
+ID     NAME
+--    ------
+1	ABC
+2	XYZ
+3	TEST
+4	HELLO
+5	MOHAN
+6	MURALI
+
+-> Here we  did not give the ID values but in the output displays the ID in sequence.
+
+-> Same sequence should not be used for multiple tables
+
+
+-> Every master table as parent table here GENDER is a master table
+
+GENDER TABLE:
+-------------
+CREATE TABLE GENDER(ID NUMBER UNIQUE, NAME VARCHAR2(90));
+
+INSERT INTO GENDER VALUES(1,'MALE');
+INSERT INTO GENDER VALUES(2,'FEMALE');
+
+
+PERSON TABLE:
+-------------
+CREATE TABLE PERSON(ID NUMBER, NAME VARCHAR2(90), GENDER_ID NUMBER,
+                    CONSTRAINT PERSON_FK1 FOREIGN KEY(GENDER_ID) REFERENCES GENDER(ID));
+
+INSERT INTO PERSON VALUES(1,'MOHAN',1);
+INSERT INTO PERSON VALUES(2,'SWETHA',2);
+INSERT INTO PERSON VALUES(3,'RUPA',2);
+INSERT INTO PERSON VALUES(4,'RAMU',1);
+INSERT INTO PERSON VALUES(5,'MURALI',4); //ERROR
+INSERT INTO PERSON VALUES(6,'KIRAN',8);  //ERROR
+INSERT INTO PERSON VALUES(7,'BABU',9);  //ERROR
+
+-> Error because in GENDER table doesnot contains the ID's are 4,8,9
+
+
+ASSIGNMENT:
+-----------
+
+DEVELOP THE DATABASE DESIGN FOR A PERSON WITH THE FOLLOWING FIELDS 
+1. ID
+2. FIRST NAME
+3. LAST NAME
+4. AGE
+5.EMAIL
+6. MOBILE_NO
+7. GENDER
+8. HOUSE_NO
+9. STREET_NAME
+10. CITY
+11. STATE
+12. LATEST_EDUCATION
+13. ALL SKILLS(MAY BE ANY SKILLS IN C, C++,JAVA, SQL)
+
+
+CREATE SEQUENCE GENDER_SEQ START WITH 1 INCREMENT BY 1;
+CREATE SEQUENCE EDUCATION_SEQ START WITH 1 INCREMENT BY 1;
+CREATE SEQUENCE SKILL_SEQ START WITH 1 INCREMENT BY 1;
+CREATE SEQUENCE STATE_SEQ START WITH 1 INCREMENT BY 1;
+CREATE SEQUENCE ADDRESS_SEQ START WITH 1 INCREMENT BY 1;
+CREATE SEQUENCE PERSON_SEQ START WITH 1 INCREMENT BY 1;
+
+GENDER TABLE:
+-------------
+CREATE TABLE GENDER(G_ID NUMBER UNIQUE, NAME VARCHAR2(90));
+
+INSERT INTO GENDER VALUES(GENDER_SEQ.NEXTVAL,'MALE');
+INSERT INTO GENDER VALUES(GENDER_SEQ.NEXTVAL,'FEMALE');
+
+
+EDUCATION TABLE:
+----------------
+CREATE TABLE EDUCATION(E_ID NUMBER UNIQUE,E_NAME VARCHAR2(90));
+
+INSERT INTO EDUCATION VALUES(EDUCATION_SEQ.NEXTVAL,'BE');
+INSERT INTO EDUCATION VALUES(EDUCATION_SEQ.NEXTVAL,'MCA');
+INSERT INTO EDUCATION VALUES(EDUCATION_SEQ.NEXTVAL,'BCA');
+
+
+SKILLS TABLE:
+-------------
+CREATE TABLE SKILLS(SK_ID NUMBER UNIQUE, NAME VARCHAR2(90));
+
+INSERT INTO SKILLS VALUES(SKILL_SEQ.NEXTVAL,'C');
+INSERT INTO SKILLS VALUES(SKILL_SEQ.NEXTVAL,'C++');
+INSERT INTO SKILLS VALUES(SKILL_SEQ.NEXTVAL,'JAVA');
+INSERT INTO SKILLS VALUES(SKILL_SEQ.NEXTVAL,'SQL');
+
+
+STATE TABLE:
+------------
+CREATE TABLE STATE(S_ID NUMBER UNIQUE, NAME VARCHAR2(90));
+
+INSERT INTO STATE VALUES(STATE_SEQ.NEXTVAL,'KARNATAKA');
+INSERT INTO STATE VALUES(STATE_SEQ.NEXTVAL,'ANDHRA');
+INSERT INTO STATE VALUES(STATE_SEQ.NEXTVAL,'KERALA');
+INSERT INTO STATE VALUES(STATE_SEQ.NEXTVAL,'TAMILNADU');
+
+
+PERSON TABLE:
+-------------
+CREATE TABLE PERSON(ID NUMBER UNIQUE, FIRST_NAME VARCHAR2(90),
+                    LAST_NAME VARCHAR2(90),AGE NUMBER, 
+                    EMAIL VARCHAR2(90),MOBILE_NO NUMBER,
+                     GENDER_ID NUMBER,EDUCATION_ID NUMBER,
+                    CONSTRAINT PERSON1_FK1 
+                    FOREIGN KEY(GENDER_ID) REFERENCES GENDER(G_ID),
+                    CONSTRAINT PERSON2_FK1 
+                    FOREIGN KEY(ID) REFERENCES EDUCATION(E_ID));
+
+INSERT INTO PERSON VALUES(PERSON_SEQ.NEXTVAL,'RAMU','ABC',22,'A@A.COM',8976534543,1,1);
+INSERT INTO PERSON VALUES(PERSON_SEQ.NEXTVAL,'RANI','XYZ',23,'R@R.COM',3775637657,2,3);
+
+
+ADDRESS TABLE:
+--------------
+CREATE TABLE ADDRESS(A_ID NUMBER, HOUSE_NO VARCHAR2(90),
+                     STREET_NAME VARCHAR2(90),CITY VARCHAR2(90),
+                     STATE_ID NUMBER, PERSON_ID NUMBER UNIQUE,
+                     CONSTRAINT ADDRESS1_FK 
+                     FOREIGN KEY(STATE_ID) REFERENCES STATE(S_ID),
+                     CONSTRAINT ADDRESS2_FK 
+                     FOREIGN KEY(PERSON_ID)REFERENCES PERSON(ID));
+
+INSERT INTO ADDRESS VALUES(ADDRESS_SEQ.NEXTVAL,'123/M','BTM','BANGALORE',1,1);
+INSERT INTO ADDRESS VALUES(ADDRESS_SEQ.NEXTVAL,'124/M','KUKATPALLI','HYDERABAD',2,2);
+
+
+PERSON_SKILL TABLE:
+-------------------
+CREATE TABLE PERSON_SKILL(PERSON_ID NUMBER, SKILL_ID NUMBER,
+                          CONSTRAINT PERSON_SKILL_FK1 
+                          FOREIGN KEY(PERSON_ID) REFERENCES PERSON(ID),
+                          CONSTRAINT PERSON_SKILL_FK2
+                          FOREIGN KEY(SKILL_ID) REFERENCES SKILLS(SK_ID));
+
+INSERT INTO PERSON_SKILL VALUES(1,1);
+INSERT INTO PERSON_SKILL VALUES(1,3);
+INSERT INTO PERSON_SKILL VALUES(1,4);
+INSERT INTO PERSON_SKILL VALUES(2,2);
+INSERT INTO PERSON_SKILL VALUES(2,3);
+INSERT INTO PERSON_SKILL VALUES(2,4);
+
+
+RELATIONS:
+----------
+PERSON TO GENDER    ==>   MANY-TO-ONE
+GENDER TO PERSON    ==>   ONE-TO-MANY
+
+PERSON TO EDUCATION   ==>   MANY-TO-ONE
+EDUCATION TO PERSON   ==>   ONE-TO-MANY
+
+PERSON TO ADDRESS    ==>  ONE-TO-ONE
+ADDRESS TO PERSON    ==>  ONE-TO-ONE
+
+PERSON TO SKILL    ==>   MANY-TO-MANY
+SKILL TO PERSON    ==>   MANY-TO-MANY
+
+
+
+LMS:(Learning Management System)
+---------------------------------
+
+COURSE_PACKAGE TABLE
+--------------------
+CREATE TABLE COURSE_PACKAGE(ID NUMBER,TITLE VARCHAR2(90),PRICE NUMBER, DURATION NUMBER, COURSE_DESC VARCHAR2(90),CONSTRAINT COURSE_PACKAGE_PK1 PRIMARY KEY(ID));
+
+CREATE SEQUENCE COURSE_PACKAGE_SEQ START WITH 1 INCREMENT BY 1;
+
+INSERT INTO COURSE_PACKAGE VALUES(COURSE_PACKAGE_SEQ.NEXTVAL,'JAVA FULL STACK',50000, 6, 'CLOSE TO SKILLS ARE THERE');
+
+INSERT INTO COURSE_PACKAGE VALUES(COURSE_PACKAGE_SEQ.NEXTVAL,' PYTHON FULL STACK',40000, 5, 'BOTH SERVER SIDE AND CLIENT SIDE IN PYTHON');
+
+UPDATE COURSE_PACKAGE SET COURSE_DESC='BOTH SERVER SIDE AND CLIENT SIDE IN JAVA' WHERE ID=1;
+
+INSERT INTO COURSE_PACKAGE VALUES(COURSE_PACKAGE_SEQ.NEXTVAL,' FRONTEND FULL STACK',20000, 3, 'FRONTEND AND NODE TECHNOLOGIES');
+
+SELECT * FROM COURSE_PACKAGE;
+
+
+
+SKILLS TABLE:
+-------------
+CREATE SEQUENCE SKILLS_SEQ START WITH 1 INCREMENT BY 1;
+
+CREATE TABLE SKILLS(ID NUMBER , NAME VARCHAR2(90), SKILL_DESC VARCHAR2(90),
+                    CONSTRAINT SKILLS_PK1 PRIMARY KEY(ID));
+
+INSERT INTO SKILLS VALUES(SKILL1_SEQ.NEXTVAL,'JAVA','SOME DESC ABOUT JAVA LANGUAGE');
+INSERT INTO SKILLS VALUES(SKILL1_SEQ.NEXTVAL,'SQL','SOME DESC ABOUT SQL LANGUAGE');
+INSERT INTO SKILLS VALUES(SKILL1_SEQ.NEXTVAL,'SPRING BOOT','SOME DESC ABOUT SPRING BOOT LANGUAGE');
+INSERT INTO SKILLS VALUES(SKILL1_SEQ.NEXTVAL,'JAVASCRIPT','SOME DESC ABOUT JAVASCRIPT LANGUAGE');
+INSERT INTO SKILLS VALUES(SKILL1_SEQ.NEXTVAL,'CSS','SOME DESC ABOUT CSS LANGUAGE');
+INSERT INTO SKILLS VALUES(SKILL1_SEQ.NEXTVAL,'PYTHON','SOME DESC ABOUT PYTHON LANGUAGE');
+INSERT INTO SKILLS VALUES(SKILL1_SEQ.NEXTVAL,'NODE','SOME DESC ABOUT NODE LANGUAGE');
+INSERT INTO SKILLS VALUES(SKILL1_SEQ.NEXTVAL,'ANGULAR','SOME DESC ABOUT ANGULAR LANGUAGE');
+INSERT INTO SKILLS VALUES(SKILL1_SEQ.NEXTVAL,'DJANGO','SOME DESC ABOUT DJANGO LANGUAGE');
+INSERT INTO SKILLS VALUES(SKILL1_SEQ.NEXTVAL,'REACT','SOME DESC ABOUT REACT LANGUAGE');
+INSERT INTO SKILLS VALUES(SKILL1_SEQ.NEXTVAL,'HTML','SOME DESC ABOUT HTML LANGUAGE');
+
+SELECT * FROM SKILLS;
+
+
+-> These are related with many-to-many
+
+COURSE_PACKAGE AND SKILLS ==> MANY-TO-MANY RELATIONSHIP
+
+
+
+COURSE_PACKAGE_SKILL TABLE
+-------------------------- 
+CREATE TABLE COURSE_PACKAGE_SKILL(COURSE_PACKAGE_ID NUMBER,
+                                  SKILL_ID NUMBER,
+                                  CONSTRAINT COURSE_PACKAGE_SKILL_FK1 
+                                  FOREIGN KEY(COURSE_PACKAGE_ID) REFERENCES COURSE_PACKAGE(ID),
+                                  CONSTRAINT COURSE_PACKAGE_SKILL_FK2
+                                  FOREIGN KEY(SKILL_ID) REFERENCES SKILLS(ID));
+
+INSERT INTO COURSE_PACKAGE_SKILL VALUES(1,1);
+INSERT INTO COURSE_PACKAGE_SKILL VALUES(1,2);
+INSERT INTO COURSE_PACKAGE_SKILL VALUES(1,3);
+INSERT INTO COURSE_PACKAGE_SKILL VALUES(1,4);
+INSERT INTO COURSE_PACKAGE_SKILL VALUES(1,5);
+INSERT INTO COURSE_PACKAGE_SKILL VALUES(1,8);
+INSERT INTO COURSE_PACKAGE_SKILL VALUES(2,2);
+INSERT INTO COURSE_PACKAGE_SKILL VALUES(2,6);
+INSERT INTO COURSE_PACKAGE_SKILL VALUES(2,4);
+INSERT INTO COURSE_PACKAGE_SKILL VALUES(2,5);
+INSERT INTO COURSE_PACKAGE_SKILL VALUES(2,9);
+INSERT INTO COURSE_PACKAGE_SKILL VALUES(3,2);
+INSERT INTO COURSE_PACKAGE_SKILL VALUES(3,4);
+INSERT INTO COURSE_PACKAGE_SKILL VALUES(3,5);
+INSERT INTO COURSE_PACKAGE_SKILL VALUES(3,7);
+INSERT INTO COURSE_PACKAGE_SKILL VALUES(3,10);
+
+
+SELECT NAME FROM SKILLS WHERE ID IN (SELECT CPS.SKILL_ID FROM COURSE_PACKAGE_SKILL CPS WHERE CPS.COURSE_PACKAGE_ID = (SELECT ID FROM COURSE_PACKAGE WHERE TITLE = 'JAVA FULL STACK'));
+
+OUTPUT:
+-------
+  NAME
+--------
+JAVA
+SQL
+SPRING BOOT
+JAVASCRIPT
+CSS
+ANGULAR
+HTML
+
+
+SELECT NAME FROM SKILLS WHERE ID IN (SELECT CPS.SKILL_ID FROM COURSE_PACKAGE_SKILL CPS WHERE CPS.COURSE_PACKAGE_ID = (SELECT ID FROM COURSE_PACKAGE WHERE TITLE = ' PYTHON FULL STACK'));
+
+OUTPUT:
+--------
+ NAME 
+-------
+JAVASCRIPT
+CSS
+PYTHON
+DJANGO
+HTML
+
+
+SELECT NAME FROM SKILLS WHERE ID IN (SELECT CPS.SKILL_ID FROM COURSE_PACKAGE_SKILL CPS WHERE CPS.COURSE_PACKAGE_ID = (SELECT ID FROM COURSE_PACKAGE WHERE TITLE = ' FRONTEND FULL STACK'));
+
+OUTPUT:
+-------
+ NAME 
+-------
+JAVASCRIPT
+CSS
+NODE
+REACT
+HTML
+
+
+
+TOPICS TABLE:
+-------------
+CREATE SEQUENCE TOPIC_SEQ START WITH 1 INCREMENT BY 1;
+
+CREATE TABLE TOPICS(ID NUMBER , NAME VARCHAR2(90), DURATION NUMBER,
+                    SKILL_ID NUMBER,
+                    CONSTRAINT TOPICS_PK1 PRIMARY KEY(ID),
+                    CONSTRAINT TOPICS_FK1 FOREIGN KEY(SKILL_ID) REFERENCES SKILLS(ID));
+
+INSERT INTO TOPICS VALUES(TOPIC_SEQ.NEXTVAL,'OOPS CONCEPTS', 20, 1);
+INSERT INTO TOPICS VALUES(TOPIC_SEQ.NEXTVAL,'MULTI THREADING CONCEPTS', 18, 1);
+INSERT INTO TOPICS VALUES(TOPIC_SEQ.NEXTVAL,'COLLECTIONS CONCEPTS', 23, 1);
+INSERT INTO TOPICS VALUES(TOPIC_SEQ.NEXTVAL,'HEADERS META', 4, 2);
+INSERT INTO TOPICS VALUES(TOPIC_SEQ.NEXTVAL,'CONCEPTS', 12, 2);
+
+SELECT ID, NAME FROM TOPICS;
+
+OUTPUT:
+-------
+ID         NAME
+--       --------
+1	OOPS CONCEPTS
+2	MULTI THREADING CONCEPTS
+3	COLLECTIONS CONCEPTS
+4	BASIC TAGS
+5	HEADERS META
+
+SKILL AND TOPIC ==> ONE-TO-MANY RELATIONSHIP
+
+
+
+SUBTOPICS TABLE:
+----------------
+CREATE SEQUENCE SUBTOPIC_SEQ START WITH 1 INCREMENT BY 1;
+
+CREATE TABLE SUBTOPICS(ID NUMBER , NAME VARCHAR2(90), DURATION NUMBER,
+                    TOPIC_ID NUMBER,
+                    CONSTRAINT SUBTOPICS_PK1 PRIMARY KEY(ID),
+                    CONSTRAINT SUBTOPICS_FK1 FOREIGN KEY(TOPIC_ID) REFERENCES TOPICS(ID));
+
+INSERT INTO SUBTOPICS VALUES(SUBTOPIC_SEQ.NEXTVAL,'ENCAPSULATION', 3, 1);
+INSERT INTO SUBTOPICS VALUES(SUBTOPIC_SEQ.NEXTVAL,'SYNCHRONIZATION', 4, 2);
+INSERT INTO SUBTOPICS VALUES(SUBTOPIC_SEQ.NEXTVAL,'SET', 5, 3);
+INSERT INTO SUBTOPICS VALUES(SUBTOPIC_SEQ.NEXTVAL,'TABLE TAGS', 1, 4);
+
+SELECT ID, NAME FROM SUBTOPICS;
+
+OUTPUT:
+-------
+ID        NAME
+---     --------
+1	ENCAPSULATION
+2	SYNCHRONIZATION
+3	SET
+4	TABLE TAGS
+
+
+READ ALL SUBTOPICS IN JAVA SKILL:
+----------------------------------
+SELECT ID, NAME FROM SUBTOPICS WHERE TOPIC_ID IN (SELECT ID FROM TOPICS WHERE SKILL_ID = (SELECT ID FROM SKILLS WHERE NAME='JAVA'));
+
+OUTPUT:
+-------
+ID         NAME
+--        -------
+1	ENCAPSULATION
+2	SYNCHRONIZATION
+3	SET
+
+
+READ ALL SUBTOPICS IN JAVA FULL STACK PACKAGE:
+----------------------------------------------
+SELECT ID, NAME FROM SUBTOPICS WHERE TOPIC_ID IN (SELECT ID FROM TOPICS WHERE SKILL_ID IN (SELECT SKILL_ID FROM COURSE_PACKAGE_SKILL WHERE COURSE_PACKAGE_ID = (SELECT ID FROM COURSE_PACKAGE WHERE TITLE = 'JAVA FULL STACK')));
+
+OUTPUT:
+-------
+ID        NAME
+--      --------
+1	ENCAPSULATION
+2	SYNCHRONIZATION
+3	SET
+4	TABLE TAGS
+
+TOPIC AND SUBTOPIC ==> ONE-TO-MANY RELATIONSHIP
+
+READ TOPIC NAME FOR A PARTICULAR SUBTOPIC NAME:
+-----------------------------------------------
+SELECT NAME FROM TOPICS WHERE ID = (SELECT TOPIC_ID FROM SUBTOPICS WHERE NAME = 'ENCAPSULATION');
+
+
+
+
+VIDEO TABLE:
+------------
+CREATE SEQUENCE VIDEO_SEQ START WITH 1 INCREMENT BY 1;
+
+CREATE TABLE VIDEO(ID NUMBER, URL VARCHAR2(90),DURATION NUMBER,
+                   SUBTOPIC_ID NUMBER UNIQUE, CONSTRAINT VIDEO_PK1 PRIMARY KEY(ID),
+                   CONSTRAINT VIDEO_FK1 FOREIGN KEY(SUBTOPIC_ID) REFERENCES SUBTOPICS(ID));
+
+INSERT INTO VIDEO VALUES(VIDEO_SEQ.NEXTVAL,'https://www.edureka.co/blog/interview-questions/sql-interview-questions', 23, 1);
+INSERT INTO VIDEO VALUES(VIDEO_SEQ.NEXTVAL,'HTTPS://TEST.COM', 45, 2);
+
+
+READING VIDEO URL FOR A PARTICULAR SUBTOPIC 'ENCAPSULATION':
+------------------------------------------------------------
+SELECT URL FROM VIDEO WHERE SUBTOPIC_ID = (SELECT ID FROM SUBTOPICS WHERE NAME='ENCAPSULATION');
+
+OUTPUT:
+-------
+  URL
+-----------------
+https://www.edureka.co/blog/interview-questions/sql-interview-questions
+
+READING PARTICULAR NAME OF SUBTOPICS FOR A URL:
+-------------------------------------------------
+SELECT NAME FROM SUBTOPICS WHERE ID = (SELECT SUBTOPIC_ID FROM VIDEO WHERE URL='https://www.edureka.co/blog/interview-questions/sql-interview-questions');
+
+OUTPUT:
+-------
+   NAME
+  ------
+ENCAPSULATION
+
+
+SUBTOPICS AND VIDEO ==> ONE-TO-ONE RELATIONSHIP
+
+
+
+DOCUMENT TABLE:
+---------------
+CREATE TABLE DOCUMENT(ID NUMBER, URL VARCHAR2(90), SUBTOPIC_ID NUMBER UNIQUE, CONSTRAINT DOCUMENT_PK1 PRIMARY KEY(ID),
+                     CONSTRAINT DOCUMENT_FK1 FOREIGN KEY(SUBTOPIC_ID) REFERENCES SUBTOPICS(ID));
+
+INSERT INTO DOCUMENT VALUES(DOCUMENT_SEQ.NEXTVAL,'HTTPS://SOMTHING.COM',1);
+INSERT INTO DOCUMENT VALUES(DOCUMENT_SEQ.NEXTVAL,'HTTPS://TIST.COM',2);
+SELECT *FROM DOCUMENT;
+
+SELECT URL FROM DOCUMENT WHERE SUBTOPIC_ID=
+(SELECT ID FROM SUBTOPIC WHERE NAME ='ENCAPSULATION');
+
+SUBTOPICS AND DOCUMENT ==> ONE-TO-ONE RELATIONSHIP
+
+
+
+
+QUESTION TABLE:
+---------------
+CREATE SEQUENCE QUESTION_SEQ START WITH 1 INCREMENT BY 1;
+CREATE TABLE QUESTION(ID NUMBER, NAME VARCHAR2(400),QUESTION_ID NUMBER, CONSTRAINT QUESTION_PK1 PRIMARY KEY(ID),
+                      CONSTRAINT QUESTION_FK1 FOREIGN KEY(QUESTION_ID) REFERENCES SUBTOPICS(ID));
+                
+INSERT INTO QUESTION VALUES(QUESTION_SEQ.NEXTVAL,'WHAT IS ENCAPSULATION?',1);
+INSERT INTO QUESTION VALUES(QUESTION_SEQ.NEXTVAL,'WHAT IS AN OBJECT?', 1);
+INSERT INTO QUESTION VALUES(QUESTION_SEQ.NEXTVAL,'WHAT IS A SYNCHRONIZATION?',2);
+INSERT INTO QUESTION VALUES(QUESTION_SEQ.NEXTVAL,'WHY DO WE NEED SYNCHRONIZATION',2);
+
+SELECT * FROM QUESTION;
+
+OUTPUT:
+-------
+ID                NAME                  QUESTION_ID
+--               -------               --------------
+1	WHAT IS ENCAPSULATION?   	     1
+2	WHAT IS AN OBJECT?	             1
+3	WHAT IS A SYNCHRONIZATION?	     2
+4	WHY DO WE NEED SYNCHRONIZATION	     2
+
+
+SUBTOPICS AND QUESTION ==> ONE-TO-MANY RELATIONSHIP
+
+
+
+
+QUESTION_OPTION TABLE:
+-----------------------
+CREATE SEQUENCE OPTION_SEQ START WITH 1 INCREMENT BY 1;
+
+CREATE TABLE QUESTION_OPTION(ID NUMBER, OPTION_DESC VARCHAR2(400),OPTION_ID NUMBER,
+                    CONSTRAINT OPTION_PK1 PRIMARY KEY(ID),
+                    CONSTRAINT OPTION_FK1 FOREIGN KEY(OPTION_ID) REFERENCES QUESTION(ID));
+
+INSERT INTO QUESTION_OPTION VALUES(OPTION_SEQ.NEXTVAL,'ITS A SMALL GROUP OF MEMBERS',1);
+INSERT INTO QUESTION_OPTION VALUES(OPTION_SEQ.NEXTVAL,'ITS A SMALL GROUP WITH MEMBERS',1);
+INSERT INTO QUESTION_OPTION VALUES(OPTION_SEQ.NEXTVAL,'ITS REPRESENTATION OF ENTITY',1);
+INSERT INTO QUESTION_OPTION VALUES(OPTION_SEQ.NEXTVAL,'ITS AN OBJECT',1);
+
+QUESTION AND QUESTION_OPTION ==> ONE-TO-MANY RELATIONSHIP
+
+
+
+QUESTION_CORRECT_OPTION TABLE:
+------------------------------
+CREATE TABLE QUESTION_CORRECT_OPTION(QUESTION_ID NUMBER, OPTION_ID NUMBER,
+                         CONSTRAINT CORRECT_FK1 FOREIGN KEY(QUESTION_ID) REFERENCES QUESTION(ID),
+                         CONSTRAINT CORRECT_FK2 FOREIGN KEY(OPTION_ID) REFERENCES QUESTION_OPTION(ID));
+
+INSERT INTO QUESTION_CORRECT_OPTION VALUES(1, 1);
+INSERT INTO QUESTION_CORRECT_OPTION VALUES(1, 2);
+INSERT INTO QUESTION_CORRECT_OPTION VALUES(1, 3);
+
+QUESTION AND QUESTION_CORRECT_OPTION ==> ONE-TO-MANY RELATIONSHIP
+
+
+
+STUDENT1 TABLE:
+---------------
+CREATE SEQUENCE STUDENT_SEQ START WITH 1  INCREMENT BY 1;
+
+CREATE TABLE STUDENT1(ID NUMBER, FIRST_NAME VARCHAR2(90), LAST_NAME VARCHAR2(90),
+                    EMAIL VARCHAR2(90), MOBILE_NO NUMBER,
+                    CONSTRAINT STUDENT_PK PRIMARY KEY(ID));
+                
+INSERT INTO STUDENT1 VALUES(STUDENT_SEQ.NEXTVAL,'SUNIL','TEST','S@S.COM',7334376734);
+INSERT INTO STUDENT1 VALUES(STUDENT_SEQ.NEXTVAL,'PAVAN','TEST','P@P.COM',7343376734);
+INSERT INTO STUDENT1 VALUES(STUDENT_SEQ.NEXTVAL,'RUPA','TEST','R@R.COM',7334786734);
+
+
+COURSE_PACKAGE_STUDENT TABLE:
+-----------------------------
+CREATE TABLE COURSE_PACKAGE_STUDENT(STUDENT_ID NUMBER, COURSE_PACKAGE NUMBER,
+                         CONSTRAINT COURSE_PACKAGE_STUDENT_FK1 FOREIGN KEY(STUDENT_ID) REFERENCES STUDENT1(ID),
+                         CONSTRAINT COURSE_PACKAGE_STUDENT_FK2 FOREIGN KEY(COURSE_PACKAGE) REFERENCES COURSE_PACKAGE(ID));
+                         
+INSERT INTO COURSE_PACKAGE_STUDENT VALUES(1, 1);
+INSERT INTO COURSE_PACKAGE_STUDENT VALUES(1, 2);
+INSERT INTO COURSE_PACKAGE_STUDENT VALUES(2, 2);
+INSERT INTO COURSE_PACKAGE_STUDENT VALUES(3, 1);
+
+STUDENT AND COURSE_PACKAGE ==> MANY-TO-MANY RELATIONSHIP
+
+
+
+
+--> DELETE COMMAND DELETES THE ROWS ROW BY ROW TAKES MORE TIME
+--> SHIFT DELETE ==> DELETES PERMANTLY
+--> DELETED RECORDS CAN BE RETRIEVED BACK BY USING 'ROLLBACK' COMMAND BUT IT SHOULD BE DONE BEFORE 'COMMIT'.
+-> In delete command we can used the 'where' clause
+
+
+
+COMMIT AND ROLLBACK
+--------------------
+
+TEST4 TABLE
+------------
+CREATE TABLE TEST4(SNO NUMBER, NAME VARCHAR2(90),AGE INT);
+
+INSERT INTO TEST4 VALUES(1,'RAMU',22);
+INSERT INTO TEST4 VALUES(2,'KUMAR',24);
+INSERT INTO TEST4 VALUES(3,'ASHA',27);
+INSERT INTO TEST4 VALUES(4,'SWETHA',21);
+INSERT INTO TEST4 VALUES(5,'MURALI',25);
+INSERT INTO TEST4 VALUES(6,'MOHAN',29);
+
+
+COMMIT:
+-------
+-> To save the records in the table after commiting 
+
+command
+-------- 
+ COMMIT;
+
+
+-> DELETE FROM TEST4 WHERE SNO = 4;
+   
+  --> Here the one row is deleted
+
+ROLLBACK:
+---------
+--> It is used to rollback the deleted rows
+
+command:
+--------
+ROLLBACK;
+
+
+TURNCATE: It is a table wise (delete all the rows in a table)
+---------
+-> It is used to delete all the records from the table permanetly
+-> Here 'where' clause is not used
+-> And the data will completly deleted
+-> after ROLLBACK also the data will not be retrieved 
+
+-> It is deleting all rows in a single Invocation
+-> It is also used to remove the entire memory of the records (deallocating)
+
+
+ SNO       PROPERTY                      DELETE                                 TRUNCATE
+-----     -----------                   --------                                ---------
+  1         WHERE                         YES                                      NO
+  2        DELETE                      ROW BY ROW                         ALL THE ROWS THROUGH SINGLE INVOCATION
+  3         TIME                        MORE TIME                              LESS TIME 
+  4        MEMORY                    NOT DEALLOCATING                        DEALLOCATING
+  5       RETRIEVING            YES,POSSIBLE BUT BEFORE COMMIT             NO,NOT POSSIBLE AT ALL
+  6        OPERATION                      DML                                      DDL
+ 
+
+
+SQL COMMANDS
+-------------
+                                                       SQL COMMAND
+                                                            |
+                                                            |
+          -----------------------------------------------------------------------------------------------------
+          |                   |                        |                         |                            |
+         DDL                 DML                      DCL                       TCL                          DQL
+         |                   |                        |                         |                            |
+         |-- CREATE          |-- INSERT               |-- GRANT                 |-- COMMIT                   |-- SELECT
+         |-- DROP            |-- UPDATE               |-- REVOKE                |-- ROLLBACK
+         |-- ALTER           |-- DELETE                                         |-- SAVE POINT
+         |-- TRUNCATE
+       
+
+DDL  ==> DATA DEFINITION LANGUAGE  --> It is main table schema and won't allow where condition
+DML  ==> DATA MANUPLATION LANGUAGE
+DCL  ==> DATA CONTROL LANGUAGE
+TCL  ==> TRANSACTION CONTROL LANGUAGE
+DQL  ==> DATA QUERY LANGUAGE  --> Query means read
+
+
+
+INDEXING: It should not be created for primary/unique/frequently used column
+---------
+--> To increase the performances 'Indexes' are used
+
+--> In table column name is not using frequently so the name column recommanded to use the Indexes to increase the performance
+
+
+TEST5 TABLE:
+------------
+CREATE TABLE TEST5(SNO NUMBER, FIRST_NAME VARCHAR2(90),LAST_NAME VARCHAR2(90));
+
+CREATE INDEX TEST5_INDEX1 ON TEST5(FIRST_NAME);
+
+INSERT INTO TEST5 VALUES(1,'RAMU','ABC');
+INSERT INTO TEST5 VALUES(2,'KUMAR','XYZ');
+INSERT INTO TEST5 VALUES(3,'KIRAN','TEST');
+INSERT INTO TEST5 VALUES(4,'SWETHA','HELLO');
+INSERT INTO TEST5 VALUES(5,'RUPA','CHECK');
+
+
+--> Each Index can have multiple columns
+
+CREATE INDEX TEST5_INDEX1 ON TEST5(SNO,FIRST_NAME);
+
+
+
+
+SECURITY/PRIVACY  ( VIEW )
+----------------
+--> In order to avoid knowing secured data to clients, so we can send the view to the clients not the table name
+
+CREATE TABLE TEST6(SNO NUMBER, FIRST_NAME VARCHAR2(90),LOVER_NAME VARCHAR2(90));
+
+INSERT INTO TEST6 VALUES(1,'RAMU','ABC');
+INSERT INTO TEST6 VALUES(2,'KUMAR','XYZ');
+INSERT INTO TEST6 VALUES(3,'KIRAN','TEST');
+INSERT INTO TEST6 VALUES(4,'SWETHA','HELLO');
+INSERT INTO TEST6 VALUES(5,'RUPA','CHECK');
+
+--> Create the view for the unsecure one's
+
+CREATE VIEW TEST6_V1 AS SELECT SNO,FIRST_NAME FROM TEST6;
+
+SELECT * FROM TEST6_V1;
+
+OUTPUT
+------
+SNO    FIRST_NAME
+---    -----------
+1	RAMU
+2	KUMAR
+3	KIRAN
+4	SWETHA
+5	RUPA
+
+SELECT LOVER_NAME FROM TEST6_V1  // ERROR
+
+--> Because the LOVER_NAME column is not there in the view 
+
+
+
+
+STORED PROCEDURE
+----------------
+
+--> Making a multiple commands in a group
+
+CREATE PROCEDURE P1 AS 
+BEGIN 
+  INSERT INTO TEST7 VALUES(6,'MURALI','SJK');
+  INSERT INTO TEST6 VALUES(7,'SAI','JSK');
+  UPDATE TEST6 SET FIRST_NAME = 'SWATHI' WHERE SNO = 1;
+  DELETE FROM TEST7 WHERE SNO = 2;
+END;
+
+
+--> Replace a procedure if already exist
+
+CREATE OR REPLACE PROCEDURE P1 AS 
+BEGIN 
+  INSERT INTO TEST7 VALUES(6,'MURALI','SJK');
+  INSERT INTO TEST6 VALUES(7,'SAI','JSK');
+  UPDATE TEST6 SET FIRST_NAME = 'SWATHI' WHERE SNO = 1;
+  DELETE FROM TEST7 WHERE SNO = 2;
+END;
+
+
+SET SERVEROUTPUT ON;
+EXEC P1;
+
+
+
+DATABASE OBJECT:
+    1. TABLE
+    2. SEQUENCE
+    3. INDEX
+    4. VIEW
+    5. PROCEDURE
+
+
+
+
+LINKEDIN DATABSE DESIGN:
+------------------------
+
+SM_USER TABLE:
+------------
+CREATE SEQUENCE SM_USER_SEQ START WITH 1 INCREMENT BY 1;
+
+CREATE TABLE SM_USER(ID NUMBER PRIMARY KEY,FIRST_NAME VARCHAR2(90),
+                  LAST_NAME VARCHAR2(90),EMAIL VARCHAR2(90),
+                  PASSWORD VARCHAR2(90),DATE_OF_CREATION DATE);
+
+INSERT INTO SM_USER VALUES(SM_USER_SEQ.NEXTVAL,'RAMA','TEST','R@R.COM','RRR',SYSDATE);
+INSERT INTO SM_USER VALUES(SM_USER_SEQ.NEXTVAL,'RANI','ABC','R@R.COM','RRR',SYSDATE);
+INSERT INTO SM_USER VALUES(SM_USER_SEQ.NEXTVAL,'PAVAN','HELLO','T@R.COM','RRR',SYSDATE);
+INSERT INTO SM_USER VALUES(SM_USER_SEQ.NEXTVAL,'KUMAR','TEST1','K@R.COM','RRR',SYSDATE);
+INSERT INTO SM_USER VALUES(SM_USER_SEQ.NEXTVAL,'KIRAN','TEST1','A@R.COM','RRR',SYSDATE);
+INSERT INTO SM_USER VALUES(SM_USER_SEQ.NEXTVAL,'ASHA','TEST1','Q@R.COM','RRR',SYSDATE);
+
+SELECT * FROM SM_USER;
+
+OUTPUT:
+-------
+ID    FIRST_NAME   LAST_NAME      EMAIL    PASSWORD     DATE_OF_CREATION
+--    ----------   ---------    -------   ---------    -----------------
+1	RAMA	     TEST	R@R.COM	     RRR	  10-09-23
+2	RANI   	     ABC	R@R.COM      RRR	  10-09-23
+3	PAVAN	    HELLO	T@R.COM	     RRR	  10-09-23
+4	KUMAR	     TEST1	K@R.COM	     RRR	  10-09-23
+5	KIRAN	     TEST1	A@R.COM	     RRR	  10-09-23
+6	ASHA	     TEST1	Q@R.COM	     RRR	  10-09-23
+
+SELECT ID,FIRST_NAME FROM SM_USER;
+
+OUTPUT:
+-------
+ID      FIRST_NAME
+--     ------------
+1	RAMA
+2	RANI
+3	PAVAN
+4	KUMAR
+5	KIRAN
+6	ASHA
+
+
+USER_PROFILE TABLE:
+--------------
+CREATE TABLE USER_PROFILE(ID NUMBER PRIMARY KEY,JOB VARCHAR2(90),
+                     LOCATION VARCHAR2(90),LATEST_EDUCATION VARCHAR2(90),
+                     CURRENT_DESIGNATION VARCHAR2(90),USER_ID NUMBER UNIQUE,
+                     CONSTRAINT USER_PROFILE_FK1 FOREIGN KEY(USER_ID) REFERENCES SM_USER(ID));
+
+
+SM_USER AND USER_PROFILE  ==> ONE-TO-ONE RELATIONSHIP
+
+
+CONNECTION TABLE:
+-----------------
+CREATE TABLE CONNECTION(ID NUMBER PRIMARY KEY,USER_ID NUMBER,FRIEND_ID NUMBER,
+               CONSTRAINT CONNECTION_FK1 FOREIGN KEY(USER_ID) REFERENCES SM_USER(ID), 
+               CONSTRAINT CONNECTION_FK2 FOREIGN KEY(FRIEND_ID) REFERENCES SM_USER(ID));
+
+INSERT INTO CONNECTION VALUES(1,1,2);
+INSERT INTO CONNECTION VALUES(2,1,3);
+INSERT INTO CONNECTION VALUES(3,1,4);
+INSERT INTO CONNECTION VALUES(4,1,5);
+INSERT INTO CONNECTION VALUES(5,1,6);
+INSERT INTO CONNECTION VALUES(6,2,1);
+INSERT INTO CONNECTION VALUES(7,2,3);
+INSERT INTO CONNECTION VALUES(8,2,4);
+INSERT INTO CONNECTION VALUES(9,3,1);
+INSERT INTO CONNECTION VALUES(10,3,6);
+
+ASSESMENT:
+----------
+FIND OUT FRIENDS OF RAMA
+SELECT FIRST_NAME FROM SM_USER WHERE ID IN(SELECT FRIEND_ID FROM CONNECTION WHERE USER_ID =( SELECT ID FROM SM_USER WHERE FIRST_NAME = 'RAMA'));
+
+OUTPUT:
+-------
+FIRST_NAME
+----------
+  RANI
+  PAVAN
+  KUMAR
+  KIRAN
+  ASHA
+
+FIND OUT FRIENDS OF RANI
+SELECT FIRST_NAME FROM SM_USER WHERE ID IN(SELECT FRIEND_ID FROM CONNECTION WHERE USER_ID =( SELECT ID FROM SM_USER WHERE FIRST_NAME = 'RANI'));
+
+OUTPUT:
+-------
+FIRST_NAME
+----------
+  RAMA
+  PAVAN
+  KUMAR
+
+FIND OUT FRIENDS OF PAVAN
+SELECT FIRST_NAME FROM SM_USER WHERE ID IN(SELECT FRIEND_ID FROM CONNECTION WHERE USER_ID =( SELECT ID FROM SM_USER WHERE FIRST_NAME = 'PAVAN'));
+
+OUTPUT:
+-------
+FIRST_NAME
+-----------
+  RAMA
+  ASHA
+
+FIND OUT FRIENDS COUNT OF RANI
+SELECT COUNT(*) FROM SM_USER WHERE ID IN(SELECT FRIEND_ID FROM CONNECTION WHERE USER_ID =( SELECT ID FROM SM_USER WHERE FIRST_NAME = 'RANI'));
+
+OUTPUT:
+-------
+COUNT(*)
+--------
+   3
+
+FIND OUT NAMES OF USERS WHO ARE NOT HAVING ANY FRIENDS
+SELECT FIRST_NAME FROM SM_USER WHERE ID NOT IN (SELECT USER_ID FROM CONNECTION);
+
+OUTPUT:
+-------
+FIRST_NAME
+----------
+   ASHA
+   KIRAN
+   KUMAR
+
+FIND OUT THE COMMON FRIENDS OF RAMA AND RANI
+SELECT FIRST_NAME FROM SM_USER WHERE ID IN(SELECT T1.FRIEND_ID FROM (SELECT FRIEND_ID FROM CONNECTION WHERE USER_ID = (SELECT ID FROM SM_USER WHERE FIRST_NAME = 'RAMA'))T1 INNER JOIN
+(SELECT FRIEND_ID FROM CONNECTION WHERE USER_ID = (SELECT ID FROM SM_USER WHERE FIRST_NAME = 'RANI'))T2 ON T1.FRIEND_ID = T2.FRIEND_ID);
+
+OUTPUT:
+-------
+FIRST_NAME
+----------
+   PAVAN
+   KUMAR
+
